@@ -6,6 +6,7 @@ import com.alessiodp.core.velocity.bootstrap.ADPVelocityBootstrap;
 import com.alessiodp.parties.common.configuration.PartiesConstants;
 import com.alessiodp.parties.velocity.VelocityConstants;
 import com.alessiodp.parties.velocity.VelocityPartiesPlugin;
+import com.google.inject.Inject;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
@@ -14,7 +15,6 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-import javax.inject.Inject;
 import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.Set;
