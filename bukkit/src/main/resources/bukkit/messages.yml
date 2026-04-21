@@ -12,35 +12,35 @@
 # \ =============================== /
 parties:
   # [Special tags]
-  # => %version%     = New version found
-  # => %thisversion% = Version installed
-  update-available: "&9New version of Parties found: %version% (Current: %thisversion%)"
+  # => %version%     = Versi baru yang ditemukan
+  # => %thisversion% = Versi yang terpasang
+  update-available: "&9Versi baru Parties ditemukan: %version% (Saat ini: %thisversion%)"
   # [Special tags]
-  # => %config%      = The configuration file name that is outdated
-  configuration-outdated: "&cThe configuration file '%config%' of Parties is outdated!"
+  # => %config%      = Nama file konfigurasi yang usang
+  configuration-outdated: "&cFile konfigurasi '%config%' dari Parties sudah usang!"
 
   common-messages:
-    invalid-command: "&cInvalid command"
-    configuration-reloaded: "&aConfiguration reloaded"
-    not-in-party: "&cYou are not in a party"
-    already-in-party: "&cYou are already in a party!"
-    party-not-found: "&cThe party %party% doesn't exist"
-    party-full: "&cThe party is full!"
-    player-not-found: "&cThe player %player% has not been found"
-    player-not-in-party: "&c%player% is not in a party"
+    invalid-command: "&cPerintah tidak valid"
+    configuration-reloaded: "&aKonfigurasi dimuat ulang"
+    not-in-party: "&cAnda tidak berada di guild"
+    already-in-party: "&cAnda sudah berada di guild!"
+    party-not-found: "&cGuild %party% tidak ada"
+    party-full: "&cGuild penuh!"
+    player-not-found: "&cPemain %player% tidak ditemukan"
+    player-not-in-party: "&c%player% tidak berada di guild"
 
   options:
-    enabled: '&aEnabled'
-    disabled: '&cDisabled'
-    toggled-on: '&aOn'
-    toggled-off: '&cOff'
-    word-yes: '&aYes'
-    word-no: '&cNo'
-    empty: '&8Empty'
-    none: '&8None'
+    enabled: '&aAktif'
+    disabled: '&cNonaktif'
+    toggled-on: '&aHidup'
+    toggled-off: '&cMati'
+    word-yes: '&aYa'
+    word-no: '&cTidak'
+    empty: '&8Kosong'
+    none: '&8Tidak Ada'
 
   syntax:
-    wrong-message: '&cWrong syntax: Type &7/%syntax%'
+    wrong-message: '&cSintaks salah: Ketik &7/%syntax%'
     color: 'color'
     description: 'desc'
     experience: 'experience'
@@ -54,7 +54,7 @@ parties:
     online-members: 'online_members'
     order: 'order'
     page: 'page'
-    party: 'party'
+    party: 'guild'
     password: 'password'
     permission: 'permission'
     player: 'player'
@@ -63,24 +63,24 @@ parties:
 
   permissions:
     # [Special tags]
-    # => %permission%  = Missing permission
-    no-permission: "&cYou do not have access to that command"
-    no-permission-in-party-general: "&cYour party rank do not have access to that command"
-    no-permission-in-party-rank: "&cYou need to be %rank_name% to perform that command"
+    # => %permission%  = Permission yang hilang
+    no-permission: "&cAnda tidak memiliki akses ke perintah ini"
+    no-permission-in-party-general: "&cRank guild Anda tidak memiliki akses ke perintah ini"
+    no-permission-in-party-rank: "&cAnda perlu menjadi %rank_name% untuk melakukan perintah ini"
 
-  out-party: "Out party"
+  out-party: "Luar Guild"
 
   list:
     player-online-format: "&b%player%"
     player-offline-format: "&7%player%"
     player-separator: "&7, "
-    player-empty: "&7Nobody"
-    player-unknown: "&6Someone"
-    missing-value: "&7Miss"
+    player-empty: "&7Tidak Ada Orang"
+    player-unknown: "&6Seseorang"
+    missing-value: "&7Hilang"
 
-  # Define the format of Parties chat messages
+  # Menentukan format pesan chat Parties
   formats:
-    party-chat: "&b[Party] %player_rank_chat% %player%&r&7: &b%message%"
+    party-chat: "&b[Guild] %player_rank_chat% %player%&r&7: &b%message%"
     spy:
       party-chat: "&7[SPY] [%party%] %player%: %message%"
       broadcast: "&7[SPY] [%party%]: %message%"
@@ -92,172 +92,172 @@ parties:
 # \ =============================== /
 main-commands:
   accept:
-    no-request: "&cYou have not pending request"
-    no-exists: "&cThe request doesn't exist anymore"
-    multiple-requests: "&cChoose the request that you want accept:"
-    multiple-requests-party: '[{"text":"%party%","color":"aqua"},{"text":" - Click here to accept","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Accept the request","color":"gold"}]}}}]'
-    multiple-requests-player: '[{"text":"%player%","color":"aqua"},{"text":" - Click here to accept","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Accept the request","color":"gold"}]}}}]'
+    no-request: "&cAnda tidak memiliki permintaan yang tertunda"
+    no-exists: "&cPermintaan tidak ada lagi"
+    multiple-requests: "&cPilih permintaan yang ingin Anda terima:"
+    multiple-requests-party: '[{"text":"%party%","color":"aqua"},{"text":" - Klik di sini untuk terima","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Terima permintaan","color":"gold"}]}}}]'
+    multiple-requests-player: '[{"text":"%player%","color":"aqua"},{"text":" - Klik di sini untuk terima","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Terima permintaan","color":"gold"}]}}}]'
 
   chat:
-    enabled: "&aChat set to party"
-    disabled: "&aChat set to public"
+    enabled: "&aChat diatur ke guild"
+    disabled: "&aChat diatur ke publik"
 
   create:
-    created: '[{"text":"You have created the party %party%.\n","color":"aqua","bold":true},{"text":"Type ","color":"aqua","bold":false},{"text":"/party invite","color":"gray","clickEvent":{"action":"suggest_command","value":"/party invite "}},{"text":" to invite your friend.","color":"aqua"}]'
-    created-fixed: "&b&lYou have created the fixed party %party%"
-    name-already-exists: "&cThe party name %party% already exists, choose a different name"
-    name-too-long: "&cThe party name is too long!"
-    name-too-short: "&cThe party name is too short!"
-    invalid-name: "&cInvalid characters. Use: a-Z or 0-9."
-    censored: "&cThe party name contains censored words!"
+    created: '[{"text":"Anda telah membuat guild %party%.\n","color":"aqua","bold":true},{"text":"Ketik ","color":"aqua","bold":false},{"text":"/guild invite","color":"gray","clickEvent":{"action":"suggest_command","value":"/guild invite "}},{"text":" untuk mengundang teman Anda.","color":"aqua"}]'
+    created-fixed: "&b&lAnda telah membuat guild tetap %party%"
+    name-already-exists: "&cNama guild %party% sudah ada, pilih nama yang berbeda"
+    name-too-long: "&cNama guild terlalu panjang!"
+    name-too-short: "&cNama guild terlalu pendek!"
+    invalid-name: "&cKarakter tidak valid. Gunakan: a-Z atau 0-9."
+    censored: "&cNama guild mengandung kata-kata yang disensor!"
 
   delete:
-    deleted: "&aParty %party% deleted"
-    deleted-silently: "&aParty %party% deleted silently"
-    broadcast: "&6&lYour party has been deleted"
+    deleted: "&aGuild %party% dihapus"
+    deleted-silently: "&aGuild %party% dihapus dengan diam-diam"
+    broadcast: "&6&lGuild Anda telah dihapus"
 
   deny:
-    no-request: "&cYou have not pending request"
-    no-exists: "&cThe request doesn't exist anymore"
-    multiple-requests: "&cChoose the request that you want deny:"
-    multiple-requests-party: '[{"text":"%party%","color":"aqua"},{"text":" - Click here to deny","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Deny the request","color":"gold"}]}}}]'
-    multiple-requests-player: '[{"text":"%player%","color":"aqua"},{"text":" - Click here to deny","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Deny the request","color":"gold"}]}}}]'
+    no-request: "&cAnda tidak memiliki permintaan yang tertunda"
+    no-exists: "&cPermintaan tidak ada lagi"
+    multiple-requests: "&cPilih permintaan yang ingin Anda tolak:"
+    multiple-requests-party: '[{"text":"%party%","color":"aqua"},{"text":" - Klik di sini untuk tolak","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Tolak permintaan","color":"gold"}]}}}]'
+    multiple-requests-player: '[{"text":"%player%","color":"aqua"},{"text":" - Klik di sini untuk tolak","color":"gray","clickEvent":{"action":"run_command","value":"/%run_command% %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Tolak permintaan","color":"gold"}]}}}]'
 
   ignore:
-    start-ignore: "&7Ignoring %party% invites"
-    stop-ignore: "&7You stopped ignoring %party%"
+    start-ignore: "&7Mengabaikan undangan %party%"
+    stop-ignore: "&7Anda berhenti mengabaikan %party%"
     ignore-list:
-      header: "&b&lList ignored parties:"
+      header: "&b&lDaftar guild yang diabaikan:"
       party-prefix: "&c"
       separator: "&7, "
-      empty: "&7None"
+      empty: "&7Tidak Ada"
 
   info:
     content-own-party:
-    - "&b============ &l%party%'s Info &r&b============"
-    - "&b&lDescription&7: %desc%"
-    - "&bLeader&7: %list_rank_leader%"
+    - "&b============ &lInfo %party% &r&b============"
+    - "&b&lDeskripsi&7: %desc%"
+    - "&bPemimpin&7: %list_rank_leader%"
     - "&bMods&7: %list_rank_moderator%"
-    - "&bMembers&7: %list_rank_member%"
-    - "&bOnline players&7: %members_online_total%"
+    - "&bAnggota&7: %list_rank_member%"
+    - "&bPemain Online&7: %members_online_total%"
     content-other-party:
-    - "&b============ &l%party%'s Info &r&b============"
-    - "&b&lDescription&7: %desc%"
-    - "&bLeader&7: %list_rank_leader%"
+    - "&b============ &lInfo %party% &r&b============"
+    - "&b&lDeskripsi&7: %desc%"
+    - "&bPemimpin&7: %list_rank_leader%"
     - "&bMods&7: %list_rank_moderator%"
-    - "&bMembers&7: %list_rank_member%"
-    - "&bOnline players&7: %members_online_total%"
+    - "&bAnggota&7: %list_rank_member%"
+    - "&bPemain Online&7: %members_online_total%"
 
   invite:
-    sent: "&bYou invited %player% in your party"
-    player-invited: '[{"text":"&b%player% has invited you to the party %party%.\n&bDo you want "},{"text":"&a&laccept","clickEvent":{"action":"run_command","value":"/party accept %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Accept the invitation"}]}}},{"text":" &bor "},{"text":"&c&ldeny","clickEvent":{"action":"run_command","value":"/party deny %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Deny the invitation"}]}}},{"text":"&b?\n&bYou can use &7/party <accept/deny> &bto choose."}]'
+    sent: "&bAnda mengundang %player% ke guild Anda"
+    player-invited: '[{"text":"&b%player% telah mengundang Anda ke guild %party%.\n&bApakah Anda ingin "},{"text":"&a&lterima","clickEvent":{"action":"run_command","value":"/guild accept %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Terima undangan"}]}}},{"text":" &batau "},{"text":"&c&ltolak","clickEvent":{"action":"run_command","value":"/guild deny %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Tolak undangan"}]}}},{"text":"&b?\n&bAnda dapat menggunakan &7/guild <accept/deny> &buntuk memilih."}]'
     accept:
-      broadcast: "&b&l%player% joined the party"
-      accepted: "&aYou accepted the party invite"
-      receipt: "&a%player% accepted your invite"
+      broadcast: "&b&l%player% bergabung dengan guild"
+      accepted: "&aAnda menerima undangan guild"
+      receipt: "&a%player% menerima undangan Anda"
     deny:
       broadcast: ""
-      denied: "&aYou denied the party invite"
-      receipt: "&a%player% denied your invite"
+      denied: "&aAnda menolak undangan guild"
+      receipt: "&a%player% menolak undangan Anda"
     timeout:
-      no-response: "&7%player% didn't accept the party invite"
-      timeout: "&7You didn't accept the party invite to %party%"
+      no-response: "&7%player% tidak menerima undangan guild"
+      timeout: "&7Anda tidak menerima undangan guild ke %party%"
     revoke:
-      sent-revoked: "&7Revoked invite sent to %player%"
-      player-invite-revoked: "&7Invite received from %party% has been revoked"
+      sent-revoked: "&7Undangan yang ditarik kembali dikirim ke %player%"
+      player-invite-revoked: "&7Undangan dari %party% telah ditarik kembali"
     cooldown:
-      global: "&cYou need to wait %seconds% seconds before invite another player"
-      individual: "&cYou need to wait %seconds% seconds before invite again the same player"
-      on-leave: "&cYou need to wait %seconds% seconds before invite this player"
-    player-offline: "&cYou can invite only online players"
-    player-no-permission: "&c%player% doesn't have the permission to join"
-    player-in-party: "&c%player% is already in a party"
-    already-invited: "&c%player% was already invited"
-    invite-yourself: "&cYou cannot invite yourself"
-    failed: "&cFailed to invite the player %player%"
+      global: "&cAnda perlu menunggu %seconds% detik sebelum mengundang pemain lain"
+      individual: "&cAnda perlu menunggu %seconds% detik sebelum mengundang pemain yang sama lagi"
+      on-leave: "&cAnda perlu menunggu %seconds% detik sebelum mengundang pemain ini"
+    player-offline: "&cAnda hanya dapat mengundang pemain yang sedang online"
+    player-no-permission: "&c%player% tidak memiliki izin untuk bergabung"
+    player-in-party: "&c%player% sudah berada di guild"
+    already-invited: "&c%player% sudah diundang"
+    invite-yourself: "&cAnda tidak dapat mengundang diri sendiri"
+    failed: "&cGagal mengundang pemain %player%"
 
   kick:
-    sent: "&aYou kicked %player% from the party!"
-    player-kicked: "&bYou have been kicked from %party%"
-    broadcast: "&b&l%player% has been kicked from the party"
-    broadcast-disband: "&b&lThe party has been disbanded because the leader got kicked"
-    broadcast-leader-changed: "&b&lThe new leader is %player%"
-    broadcast-leave-server: "&b&l%player% has been kicked from the party"
-    player-higher-rank: "&cYou cannot kick your superior!"
-    player-not-in-party: "&c%player% is not in your party"
+    sent: "&aAnda menendang %player% dari guild!"
+    player-kicked: "&bAnda telah ditendang dari %party%"
+    broadcast: "&b&l%player% telah ditendang dari guild"
+    broadcast-disband: "&b&lGuild telah dibubarkan karena pemimpin ditendang"
+    broadcast-leader-changed: "&b&lPemimpin baru adalah %player%"
+    broadcast-leave-server: "&b&l%player% telah ditendang dari guild"
+    player-higher-rank: "&cAnda tidak dapat menendang atasan Anda!"
+    player-not-in-party: "&c%player% tidak berada di guild Anda"
     players-conflict:
       # [Special tags]
-      # => %username%                       = The name of the player
-      # => %rank%                           = The rank
-      # => %list_players%                   = List of each player
-      # => %number%                         = The number of the player
-      # => %lastloginapi_last_logout_date%  = The last logout date (See LastLoginAPI plugin)
+      # => %username%                       = Nama pemain
+      # => %rank%                           = Rank
+      # => %list_players%                   = Daftar setiap pemain
+      # => %number%                         = Nomor pemain
+      # => %lastloginapi_last_logout_date%  = Tanggal logout terakhir (Lihat plugin LastLoginAPI)
       content:
-      - "&cWe have found some players with that name:"
+      - "&cKami menemukan beberapa pemain dengan nama itu:"
       - "%list_players%"
-      - "&cUse '&7/party kick <username> <number>&c' to kick the right player"
-      player: '{"text":"","extra":[{"text":"[%number%] ","color":"gray"},{"text":"%username%","color":"gold"},{"text":" [","color":"gray"},{"text":"%party%","color":"aqua"},{"text":"]: last login %lastloginapi_last_logout_date%","color":"gray"}],"clickEvent":{"action":"run_command","value":"/party kick %username% %number%"},"hoverEvent":{"action":"show_text","value":{"text":"Kick this player","color":"gold"}}}'
+      - "&cGunakan '&7/guild kick <username> <number>&c' untuk menendang pemain yang benar"
+      player: '{"text":"","extra":[{"text":"[%number%] ","color":"gray"},{"text":"%username%","color":"gold"},{"text":" [","color":"gray"},{"text":"%party%","color":"aqua"},{"text":"]: logout terakhir %lastloginapi_last_logout_date%","color":"gray"}],"clickEvent":{"action":"run_command","value":"/guild kick %username% %number%"},"hoverEvent":{"action":"show_text","value":{"text":"Tendang pemain ini","color":"gold"}}}'
 
   leave:
-    left: "&b&lYou left the party %party%"
-    broadcast: "&b&l%player% left the party"
-    party-disbanded: "&6&lThe party has been disbanded because the leader left"
-    leader-changed: "&b&lThe leader left the party, the new leader is %player%"
+    left: "&b&lAnda meninggalkan guild %party%"
+    broadcast: "&b&l%player% meninggalkan guild"
+    party-disbanded: "&6&lGuild telah dibubarkan karena pemimpin pergi"
+    leader-changed: "&b&lPemimpin meninggalkan guild, pemimpin baru adalah %player%"
 
   p:
     # [Special tags]
-    # => %seconds%   = Remaining time in seconds
-    cooldown: "&cYou still have to wait %seconds% seconds"
-    censored: "&cThe message contains censored words!"
-    muted: "&cYou are muted!"
+    # => %seconds%   = Waktu tersisa dalam detik
+    cooldown: "&cAnda masih harus menunggu %seconds% detik"
+    censored: "&cPesan berisi kata-kata yang disensor!"
+    muted: "&cAnda dibungkam!"
 
   rank:
     # [Special tags]
-    # => %rank_name%   = Rank wrote by the player
-    changed: "&a%player% rank changed into %rank_name%"
+    # => %rank_name%   = Rank yang ditulis oleh pemain
+    changed: "&a%player% rank berubah menjadi %rank_name%"
     broadcast: ""
-    wrong-rank: "&cRank '%rank_name%' doesn't exist!"
-    same-rank: "&c%player% is already %rank_name%!"
-    low-rank: "&cYou cannot edit players with an equivalent or higher rank than yours!"
-    to-higher-rank: "&cYou cannot promote to a rank equivalent or higher than yours!"
-    full: "&cRank %rank_name% reached the maximum number of players"
-    fixed-leader: "&cYou cannot make someone a leader of a fixed party!"
-    demote-leader: "&cYou cannot demote the party leader"
-    changing-yourself: "&cYou cannot change your own rank!"
-    player-not-in-party: "&c%player% is not in your party"
+    wrong-rank: "&cRank '%rank_name%' tidak ada!"
+    same-rank: "&c%player% sudah %rank_name%!"
+    low-rank: "&cAnda tidak dapat mengedit pemain dengan rank setara atau lebih tinggi dari Anda!"
+    to-higher-rank: "&cAnda tidak dapat mempromosikan ke rank setara atau lebih tinggi dari Anda!"
+    full: "&cRank %rank_name% mencapai jumlah pemain maksimal"
+    fixed-leader: "&cAnda tidak dapat menjadikan seseorang sebagai pemimpin guild tetap!"
+    demote-leader: "&cAnda tidak dapat menurunkan pemimpin guild"
+    changing-yourself: "&cAnda tidak dapat mengubah rank Anda sendiri!"
+    player-not-in-party: "&c%player% tidak berada di guild Anda"
     players-conflict:
       # [Special tags]
-      # => %username%                       = The name of the player
-      # => %rank%                           = The rank
-      # => %list_players%                   = List of each player
-      # => %number%                         = The number of the player
-      # => %lastloginapi_last_logout_date%  = The last logout date (See LastLoginAPI plugin)
+      # => %username%                       = Nama pemain
+      # => %rank%                           = Rank
+      # => %list_players%                   = Daftar setiap pemain
+      # => %number%                         = Nomor pemain
+      # => %lastloginapi_last_logout_date%  = Tanggal logout terakhir (Lihat plugin LastLoginAPI)
       content:
-      - "&cWe have found some players with that name:"
+      - "&cKami menemukan beberapa pemain dengan nama itu:"
       - "%list_players%"
-      - "&cUse '&7/party rank <username> <rank> <number>&c' to change rank of the right player"
-      player: '{"text":"","extra":[{"text":"[%number%] ","color":"gray"},{"text":"%username%","color":"gold"},{"text":" [","color":"gray"},{"text":"%party%","color":"aqua"},{"text":"]: last login %lastloginapi_last_logout_date%","color":"gray"}],"clickEvent":{"action":"run_command","value":"/party rank %username% %rank% %number%"},"hoverEvent":{"action":"show_text","value":{"text":"Change rank of this player","color":"gold"}}}'
+      - "&cGunakan '&7/guild rank <username> <rank> <number>&c' untuk mengubah rank pemain yang benar"
+      player: '{"text":"","extra":[{"text":"[%number%] ","color":"gray"},{"text":"%username%","color":"gold"},{"text":" [","color":"gray"},{"text":"%party%","color":"aqua"},{"text":"]: logout terakhir %lastloginapi_last_logout_date%","color":"gray"}],"clickEvent":{"action":"run_command","value":"/guild rank %username% %rank% %number%"},"hoverEvent":{"action":"show_text","value":{"text":"Ubah rank pemain ini","color":"gold"}}}'
 
   rename:
     # [Special tags]
-    # => %old%   = Old party name
-    renamed: "&aThe party %old% has been renamed into %party%"
-    broadcast: "&6Your party has been renamed into %party%!"
+    # => %old%   = Nama guild lama
+    renamed: "&aGuild %old% telah diubah nama menjadi %party%"
+    broadcast: "&6Guild Anda telah diubah nama menjadi %party%!"
     # [Special tags]
-    # => %seconds%   = Remaining time in seconds
-    cooldown: "&cYou have to wait %seconds% seconds!"
+    # => %seconds%   = Waktu tersisa dalam detik
+    cooldown: "&cAnda harus menunggu %seconds% detik!"
 
   spy:
-    enabled: "&7Now you are a spy!"
-    disabled: "&7You are no longer a spy"
+    enabled: "&7Sekarang Anda adalah spy!"
+    disabled: "&7Anda tidak lagi menjadi spy"
 
   version:
     # [Special tags]
-    # => %version%    = Parties version
-    # => %newversion% = Latest Parties version
-    # => %platform%   = Platform of the plugin (e.g. Bukkit, BungeeCord)
-    updated: "&b&lParties &b%version% &7(%platform%) - Developed by &6AlessioDP"
-    outdated: "&b&lParties &b%version% &7(%platform%) - Developed by &6AlessioDP\n&aNew version found: &2%newversion%"
+    # => %version%    = Versi Parties
+    # => %newversion% = Versi Parties terbaru
+    # => %platform%   = Platform plugin (misalnya Bukkit, BungeeCord)
+    updated: "&b&lParties &b%version% &7(%platform%) - Dikembangkan oleh &6AlessioDP"
+    outdated: "&b&lParties &b%version% &7(%platform%) - Dikembangkan oleh &6AlessioDP\n&aVersi baru ditemukan: &2%newversion%"
 
 
 # / =============================== \
@@ -265,260 +265,274 @@ main-commands:
 # \ =============================== /
 additional-commands:
   ask:
-    sent: "&aJoin request sent to %party%"
-    received: '[{"text":"&b%player% want to join your party.\n&bDo you want "},{"text":"&a&laccept","clickEvent":{"action":"run_command","value":"/party accept %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Accept the request"}]}}},{"text":" &bor "},{"text":"&c&ldeny","clickEvent":{"action":"run_command","value":"/party deny %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Deny the invitation","color":"gold"}]}}},{"text":"&b?\n&bYou can use &7/party <accept/deny> %player% &bto choose."}]'
+    sent: "&aPermintaan bergabung dikirim ke %party%"
+    received: '[{"text":"&b%player% ingin bergabung dengan guild Anda.\n&bApakah Anda ingin "},{"text":"&a&lterima","clickEvent":{"action":"run_command","value":"/guild accept %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Terima permintaan"}]}}},{"text":" &batau "},{"text":"&c&ltolak","clickEvent":{"action":"run_command","value":"/guild deny %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Tolak undangan","color":"gold"}]}}},{"text":"&b?\n&bAnda dapat menggunakan &7/guild <accept/deny> %player% &buntuk memilih."}]'
     accept:
-      broadcast: "&b&l%player% joined the party"
-      accepted: "&aYou accepted the ask request"
-      receipt: "&a%party% accepted your ask request"
+      broadcast: "&b&l%player% bergabung dengan guild"
+      accepted: "&aAnda menerima permintaan ask"
+      receipt: "&a%party% menerima permintaan ask Anda"
     deny:
       broadcast: ""
-      denied: "&aYou denied the %player% ask request"
-      receipt: "&a%party% denied your ask request"
+      denied: "&aAnda menolak permintaan ask %player%"
+      receipt: "&a%party% menolak permintaan ask Anda"
     timeout:
-      no-response: "&7%party% didn't accept the ask request"
+      no-response: "&7%party% tidak menerima permintaan ask"
     cooldown:
       # [Special tags]
-      # => %seconds%          = Remaining time in seconds
-      global: "&cYou need to wait %seconds% seconds before ask to another party"
-      individual: "&cYou need to wait %seconds% seconds before ask to the same party"
+      # => %seconds%          = Waktu tersisa dalam detik
+      global: "&cAnda perlu menunggu %seconds% detik sebelum bertanya ke guild lain"
+      individual: "&cAnda perlu menunggu %seconds% detik sebelum bertanya ke guild yang sama"
 
   claim:
-    claimed: "&aGranted permission to the party"
-    removed: "&aRemoved permission to the party"
-    no-manager: "&cYou need to be the manager of the claim"
-    claim-no-exists: "&cClaim not found"
-    allowed-permissions: "&cPermissions: trust, container & access"
+    claimed: "&aIzin diberikan ke guild"
+    removed: "&aIzin dihapus dari guild"
+    no-manager: "&cAnda perlu menjadi manajer klaim"
+    claim-no-exists: "&cKlaim tidak ditemukan"
+    allowed-permissions: "&cIzin: trust, container & access"
 
   color:
-    info: "&bYour party color is: %color_code%%color_command%"
-    empty: "&bYour party doesn't have a color"
-    changed: "&bParty color changed into %color_command%"
-    removed: "&bParty color removed"
+    info: "&bWarna guild Anda adalah: %color_code%%color_command%"
+    empty: "&bGuild Anda tidak memiliki warna"
+    changed: "&bWarna guild berubah menjadi %color_command%"
+    removed: "&bWarna guild dihapus"
     broadcast: ""
-    # Syntax of %available_colors%
+    # Sintaks dari %available_colors%
     available-colors:
       color: "%color_command%"
       separator: ", "
-    wrong-color: "&cColor not found. You can select: %available_colors%"
+    wrong-color: "&cWarna tidak ditemukan. Anda dapat memilih: %available_colors%"
 
   debug:
     bungeecord:
-      sent: "&bSent a debug BungeeCord request into the network"
-      server-players: "&cThere must be at least 1 player in the server"
-      sync: "Parties is synced correctly"
-      not-sync: "Parties is NOT synced correctly"
+      sent: "&bMenulis permintaan debug BungeeCord ke jaringan"
+      server-players: "&cHarus ada setidaknya 1 pemain di server"
+      sync: "Parties tersinkronisasi dengan benar"
+      not-sync: "Parties TIDAK tersinkronisasi dengan benar"
 
     config:
       header: '&b================== &lDebug Config &r&b=================='
       text:
-      - "&bOutdated config/parties/messages:&7 %outdated_config%&7/%outdated_parties%&7/%outdated_messages%"
-      - "&bStorage&7: %storage%"
-      - "&bRanks&7: %ranks%"
+      - "&bKonfigurasi/guild/pesan usang:&7 %outdated_config%&7/%outdated_parties%&7/%outdated_messages%"
+      - "&bPenyimpanan&7: %storage%"
+      - "&bRank&7: %ranks%"
       rank-format: '&f%name%&7[%level%]'
       rank-separator: '&7, '
 
     exp:
       header: '&b=================== &lDebug Exp &r&b==================='
       text:
-      - "&bExp system&7: %exp%"
-      - "&bEarn from mobs: %earn%"
+      - "&bSistem Exp&7: %exp%"
+      - "&bKarena dari mob: %earn%"
       - "&bMode&7: %mode%"
       - "%mode_options%"
       mode-options:
-        progressive: "&bProgressive start&7: %start%\n&bFormula&7: '%formula%'"
-        fixed: "&bFixed repeat&7: %repeat%&bLevels&7: %levels%"
+        progressive: "&bProgresif mulai&7: %start%\n&bRumus&7: '%formula%'"
+        fixed: "&bUlangi tetap&7: %repeat%&bLevel&7: %levels%"
 
     party:
-      header: '&b================== &lDebug Party &r&b=================='
+      header: '&b================== &lDebug Guild &r&b=================='
       text:
       - "&bID&7: %id%"
-      - "&bName/tag&7: %name%&7/%tag%"
-      - "&bLeader&7: %leader%"
-      - "&bNumber members/online&7: %members%&7/%members_online%"
-      - "&bDescription&7: %description%"
-      - "&bMOTD size/homes/kills&7: %motd_size%&7/%homes%&7/%kills%"
+      - "&bNama/tag&7: %name%&7/%tag%"
+      - "&bPemimpin&7: %leader%"
+      - "&bJumlah anggota/online&7: %members%&7/%members_online%"
+      - "&bDeskripsi&7: %description%"
+      - "&bUkuran MOTD/home/kills&7: %motd_size%&7/%homes%&7/%kills%"
       - "&bPassword/protection/follow/open&7: %password%&7/%protection%&7/%follow%&7/%open%"
-      - "&bColor set/active/dynamic&7: %color%&7/%color_active%&7/%color_dynamic%"
-      - "&bExperience&7: %experience%"
+      - "&bWarna set/active/dynamic&7: %color%&7/%color_active%&7/%color_dynamic%"
+      - "&bPengalaman&7: %experience%"
 
     player:
-      header: '&b================== &lDebug Player &r&b=================='
+      header: '&b================== &lDebug Pemain &r&b=================='
       text:
       - "&bUUID&7: %uuid%"
-      - "&bName&7: %name%"
+      - "&bNama&7: %name%"
       - "&bRank&7: %rank%"
-      - "&bParty&7: %party%"
+      - "&bGuild&7: %party%"
       - "&bChat/spy/muted&7: %chat%&7/%spy%&7/%muted%"
       - "&bProtection bypass&7: %protection_bypass%"
-      player-offline: "&cThe player '%player%' must be online"
+      player-offline: "&cPemain '%player%' harus online"
 
   desc:
-    changed: "&bParty description changed"
-    removed: "&bParty description removed"
+    changed: "&bDeskripsi guild berubah"
+    removed: "&bDeskripsi guild dihapus"
     broadcast: ""
-    invalid-chars: "&cInvalid characters. Use: a-Z or 0-9. Min 3 and max 16 chars."
-    censored: "&cThe description contains censored words!"
+    invalid-chars: "&cKarakter tidak valid. Gunakan: a-Z atau 0-9. Min 3 dan maks 16 karakter."
+    censored: "&cDeskripsi berisi kata-kata yang disensor!"
 
   exp:
     # [Special tag]
-    # => %exp%        = Experience gained
-    gained-experience: "&bGained %exp% party experience for killing the mob"
-    level-up: "&bParty leveled up to %experience_level%"
+    # => %exp%        = Pengalaman yang diperoleh
+    gained-experience: "&bDapatkan %exp% pengalaman guild karena membunuh mob"
+    level-up: "&bGuild naik level menjadi %experience_level%"
+
+  exp-share:
+    toggle-on: "&aAnda akan sekarang berbagi XP dengan anggota guild Anda"
+    toggle-off: "&aAnda tidak akan lagi berbagi XP dengan anggota guild Anda"
 
   follow:
-    toggle-on: "&aNow your party members will follow your leader"
-    toggle-off: "&aYour party members will not follow your leader anymore"
+    toggle-on: "&aSekarang anggota guild Anda akan mengikuti pemimpin Anda"
+    toggle-off: "&aAnggota guild Anda tidak akan lagi mengikuti pemimpin Anda"
 
   home:
-    teleported: "&7Teleported to the party home"
+    teleported: "&7Teleportasi ke home guild"
     # [Special tags]
-    # => %seconds%          = Time of delay in seconds
-    teleport-in: "&7You will be teleported in %seconds% seconds..."
-    teleport-cancelled: "&7Teleport cancelled"
-    teleport-waiting: "&cYou are already waiting for the teleport!"
-    no-home: "&cThere isn't a home yet"
+    # => %seconds%          = Waktu keterlambatan dalam detik
+    teleport-in: "&7Anda akan teleportasi dalam %seconds% detik..."
+    teleport-cancelled: "&7Teleportasi dibatalkan"
+    teleport-waiting: "&cAnda sudah menunggu teleportasi!"
+    no-home: "&cBelum ada home"
     # [Special tags]
-    # => %seconds%          = Remaining time in seconds
-    cooldown: "&cYou have to wait %seconds% seconds!"
-    must-select-home: "&cYou must select a valid home"
-    invalid-home: "&cThe selected home doesn't exist"
-    valid-homes: "&bList of valid homes:"
+    # => %seconds%          = Waktu tersisa dalam detik
+    cooldown: "&cAnda harus menunggu %seconds% detik!"
+    must-select-home: "&cAnda harus memilih home yang valid"
+    invalid-home: "&cHome yang dipilih tidak ada"
+    valid-homes: "&bDaftar home yang valid:"
     # [Special tags]
-    # Any value related to home: %name%, %world%, %server%, %x%, %y%, %z%, %pitch% & %yaw%
-    valid-home-line: '[{"text":"&b%name%","clickEvent":{"action":"run_command","value":"/party home %name%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&aClick to teleport"}]}}}]'
+    # Nilai apa pun yang terkait dengan home: %name%, %world%, %server%, %x%, %y%, %z%, %pitch% & %yaw%
+    valid-home-line: '[{"text":"&b%name%","clickEvent":{"action":"run_command","value":"/guild home %name%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&aKlik untuk teleportasi"}]}}}]'
 
   join:
-    joined: "&aYou joined the party %party%"
-    player-joined: "&b&l%player% joined in the party"
+    joined: "&aAnda bergabung dengan guild %party%"
+    player-joined: "&b&l%player% bergabung di guild"
     open-close:
-      opened: "&bThe party is now open"
-      closed: "&bThe party is now closed"
-      already-open: "&cThe party is already open"
-      already-closed: "&cThe party is already closed"
-      cooldown: "&cYou have to wait %seconds% seconds!"
-      cannot-join: "&cYou cannot join this party"
-      failed: "&cFailed to open the party"
+      opened: "&bGuild sekarang terbuka"
+      closed: "&bGuild sekarang tertutup"
+      already-open: "&cGuild sudah terbuka"
+      already-closed: "&cGuild sudah tertutup"
+      cooldown: "&cAnda harus menunggu %seconds% detik!"
+      cannot-join: "&cAnda tidak dapat bergabung dengan guild ini"
+      failed: "&cGagal membuka guild"
     password:
-      wrong-password: "&cWrong password!"
+      wrong-password: "&cPassword salah!"
 
   list:
     # [Special tags]
-    # => %index%     = The party index
-    # => %number%    = Number of online parties
-    # => %page%      = Current page of the list
-    # => %maxpages%  = Total pages
-    header: "&b============ &lOnline Parties List &r&b============"
-    footer: "&b================ &lPage %page% of %maxpages% &r&b================"
-    no-one: "&7No one"
-    format-party: '[{"text":"&b%party%","clickEvent":{"action":"run_command","value":"/party info %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&aShow info"}]}}},{"text":" &7[&6Online %members_online_total%&7] %desc%"}]'
-    invalid-order: '&cInvalid order type'
+    # => %index%     = Indeks guild
+    # => %number%    = Jumlah guild online
+    # => %page%      = Halaman saat ini dari daftar
+    # => %maxpages%  = Total halaman
+    header: "&b============ &lDaftar Guild Online &r&b============"
+    footer: "&b================ &lHalaman %page% dari %maxpages% &r&b================"
+    no-one: "&7Tidak Ada"
+    format-party: '[{"text":"&b%party%","clickEvent":{"action":"run_command","value":"/guild info %party%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&aLihat info"}]}}},{"text":" &7[&6Online %members_online_total%&7] %desc%"}]'
+    invalid-order: '&cTipe urutan tidak valid'
 
   motd:
-    changed: "&bParty MOTD changed"
-    removed: "&bParty MOTD removed"
+    changed: "&bMOTD guild berubah"
+    removed: "&bMOTD guild dihapus"
     broadcast: ""
     content:
-    - "&bParty MOTD:"
+    - "&bMOTD Guild:"
     - "&b%motd%"
-    invalid-chars: "&cInvalid characters. You can also use '. , /'. Min 3 and max 100 chars."
-    censored: "&cThe MOTD contains censored words!"
+    invalid-chars: "&cKarakter tidak valid. Anda juga dapat menggunakan '. , /'. Min 3 dan maks 100 karakter."
+    censored: "&cMOTD berisi kata-kata yang disensor!"
 
   mute:
-    toggle-on: "&7You have disabled notifications!"
-    toggle-off: "&7You have enabled notifications!"
+    toggle-on: "&7Anda telah menonaktifkan notifikasi!"
+    toggle-off: "&7Anda telah mengaktifkan notifikasi!"
 
   nickname:
     own:
-      changed: "&bYou changed your nickname into %player_nickname%"
-      removed: "&bYou removed your own nickname"
-      no-permission: "&cYou cannot change your own nickname"
+      changed: "&bAnda mengubah nickname menjadi %player_nickname%"
+      removed: "&bAnda menghapus nickname Anda"
+      no-permission: "&cAnda tidak dapat mengubah nickname Anda sendiri"
     others:
-      changed: "&bChanged nickname of %player% into %player_nickname%"
-      # Special tags:
-      # => %nickname%   = The target player nickname
-      # Tags are parsed for sender
-      target-changed: "&b%player% changed your nickname into %nickname%"
-      removed: "&bRemoved nickname of %player%"
-      target-removed: "&b%player% removed your nickname"
-      no-permission: "&cYou cannot change other player nicknames"
+      changed: "&bUbah nickname %player% menjadi %player_nickname%"
+      # Tags spesial:
+      # => %nickname%   = Nickname pemain target
+      # Tags diurai untuk pengirim
+      target-changed: "&b%player% mengubah nickname Anda menjadi %nickname%"
+      removed: "&bHapus nickname %player%"
+      target-removed: "&b%player% menghapus nickname Anda"
+      no-permission: "&cAnda tidak dapat mengubah nickname pemain lain"
     show:
-      own: "&bYour nickname is %player_nickname%"
-      own-none: "&bYou do not have any nickname"
-      other: "&bThe nickname of %player% is %player_nickname%"
-      other-none: "&b%player% does not have any nickname"
-    invalid-chars: "&cInvalid characters. You can also use '. , /'. Min 3 and max 16 chars."
-    censored: "&cThe nickname contains censored words!"
+      own: "&bNickname Anda adalah %player_nickname%"
+      own-none: "&bAnda tidak memiliki nickname"
+      other: "&bNickname %player% adalah %player_nickname%"
+      other-none: "&b%player% tidak memiliki nickname"
+    invalid-chars: "&cKarakter tidak valid. Anda juga dapat menggunakan '. , /'. Min 3 dan maks 16 karakter."
+    censored: "&cNickname berisi kata-kata yang disensor!"
 
   password:
-    changed: "&aParty password changed"
-    removed: "&aParty password removed"
+    changed: "&aPassword guild berubah"
+    removed: "&aPassword guild dihapus"
     broadcast: ""
-    invalid-chars: "&cInvalid characters. Use: a-Z or 0-9. Min 1 and max 16 chars."
+    invalid-chars: "&cKarakter tidak valid. Gunakan: a-Z atau 0-9. Min 1 dan maks 16 karakter."
 
   protection:
-    toggle-on: "&aNow your party is protected by friendly fire"
-    toggle-off: "&aYour party is not protected anymore by friendly fire"
-    protected: "&cYou can't hit your partymates"
-    warn-on-attack: "&c%player% tried to hit %victim%!"
+    toggle-on: "&aSekarang guild Anda dilindungi oleh friendly fire"
+    toggle-off: "&aGuild Anda tidak lagi dilindungi oleh friendly fire"
+    protected: "&cAnda tidak dapat menyerang rekan guild Anda"
+    warn-on-attack: "&c%player% mencoba menyerang %victim%!"
 
   sethome:
     changed: ""
-    removed: "&bParty home removed"
-    removed-none: "&cNo party home found"
-    broadcast: "&aThe party has a new home!"
+    removed: "&bHome guild dihapus"
+    removed-none: "&cTidak ada home guild yang ditemukan"
+    broadcast: "&aGuild memiliki home baru!"
     # [Special tags]
-    # => %seconds%          = Remaining time in seconds
-    cooldown: "&cYou have to wait %seconds% seconds!"
-    max-homes: "&cYou reached the maximum number of homes"
+    # => %seconds%          = Waktu tersisa dalam detik
+    cooldown: "&cAnda harus menunggu %seconds% detik!"
+    max-homes: "&cAnda mencapai jumlah home maksimal"
 
   tag:
-    changed: "&bParty tag changed"
-    removed: "&bParty tag removed"
+    changed: "&bTag guild berubah"
+    removed: "&bTag guild dihapus"
     broadcast: ""
-    invalid-chars: "&cInvalid characters. Use: a-Z or 0-9. Min 3 and max 10 chars."
-    censored: "&cThe tag contains censored words!"
-    already-used: "&c The tag %tag% is already used"
+    invalid-chars: "&cKarakter tidak valid. Gunakan: a-Z atau 0-9. Min 3 dan maks 10 karakter."
+    censored: "&cTag berisi kata-kata yang disensor!"
+    already-used: "&cTag %tag% sudah digunakan"
 
   teleport:
-    teleporting: "&7Teleporting your party here!"
-    player-teleported: "&bTeleported to %player%"
+    teleporting: "&7Teleportasi guild Anda ke sini!"
+    player-teleported: "&bDiteleportasi ke %player%"
     # [Special tags]
-    # => %seconds%          = Time of delay in seconds
-    player-teleport-in: "&7You will be teleported in %seconds% seconds"
-    player-teleport-cancelled: "&7Teleport cancelled"
+    # => %seconds%          = Waktu keterlambatan dalam detik
+    player-teleport-in: "&7Anda akan diteleportasi dalam %seconds% detik"
+    player-teleport-cancelled: "&7Teleportasi dibatalkan"
     # [Special tags]
-    # => %seconds%          = Remaining time in seconds
-    cooldown: "&cYou have to wait %seconds% seconds!"
+    # => %seconds%          = Waktu tersisa dalam detik
+    cooldown: "&cAnda harus menunggu %seconds% detik!"
     accept-request:
-      sent: "&aTeleport request sent to the party"
-      received: '[{"text":"&bDo you want to be teleported to %player%? "},{"text":"&a&lYes","clickEvent":{"action":"run_command","value":"/party accept %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Accept the request"}]}}},{"text":" &bor "},{"text":"&c&lno","clickEvent":{"action":"run_command","value":"/party deny %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Deny the invitation","color":"gold"}]}}},{"text":"&b?\n&bYou can use &7/party <accept/deny> %player% &bto choose."}]'
-      denied: "&7You denied the teleport request of %player%"
+      sent: "&aPermintaan teleportasi dikirim ke guild"
+      received: '[{"text":"&bApakah Anda ingin diteleportasi ke %player%? "},{"text":"&a&lYa","clickEvent":{"action":"run_command","value":"/guild accept %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Terima permintaan"}]}}},{"text":" &batau "},{"text":"&c&lTidak","clickEvent":{"action":"run_command","value":"/guild deny %player%"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"Tolak undangan","color":"gold"}]}}},{"text":"&b?\n&bAnda dapat menggunakan &7/guild <accept/deny> %player% &buntuk memilih."}]'
+      denied: "&7Anda menolak permintaan teleportasi %player%"
+
+  tax:
+    info: "&bPajak guild jatuh tempo: &6%amount%&b. Hari tersisa: &e%days%&b (&e%time%&b). Status: %status%&b. Pembayar: &e%payer%"
+    paid: "&aAnda membayar &6%amount%&a pajak guild"
+    already-paid: "&aSiklus pajak ini sudah dibayar oleh &e%payer%&a. Jatuh tempo dalam &e%days%h &7(&e%time%&7)"
+    failed: "&cAnda tidak memiliki cukup uang untuk membayar pajak guild [%amount%$]"
+    no-economy: "&cVault tidak diaktifkan, pembayaran pajak tidak tersedia"
+    status-paid: "&aSudah Dibayar"
+    status-unpaid: "&cBelum Dibayar"
+    auto-delete-broadcast: "&cGuild Anda telah dihapus karena pajak tidak dibayar tepat waktu"
 
   vault:
     # [Special tags]
-    # => %price%          = Price of the command
+    # => %price%          = Harga perintah
     no-money:
-      ask: "&cYou don't have enough money to send a join request [%price%$]"
-      claim: "&cYou don't have enough money to perform a claim [%price%$]"
-      color: "&cYou don't have enough money to perform the color command [%price%$]"
-      create: "&cYou don't have enough money to create a party [%price%$]"
-      desc: "&cYou don't have enough money to set the description [%price%$]"
-      follow: "&cYou don't have enough money to enable follow [%price%$]"
-      home: "&cYou don't have enough money to use the home command [%price%$]"
-      join: "&cYou don't have enough money to join a party [%price%$]"
-      motd: "&cYou don't have enough money to set the MOTD [%price%$]"
-      nickname: "&cYou don't have enough money to set the nickname [%price%$]"
-      password: "&cYou don't have enough money to set the password [%price%$]"
-      protection: "&cYou don't have enough money to enable protection [%price%$]"
-      rename: "&cYou don't have enough money to rename the party [%price%$]"
-      sethome: "&cYou don't have enough money to set the home [%price%$]"
-      tag: "&cYou don't have enough money to set the tag [%price%$]"
-      teleport: "&cYou don't have enough money to perform a teleport [%price%$]"
+      ask: "&cAnda tidak memiliki cukup uang untuk mengirim permintaan bergabung [%price%$]"
+      claim: "&cAnda tidak memiliki cukup uang untuk melakukan klaim [%price%$]"
+      color: "&cAnda tidak memiliki cukup uang untuk melakukan perintah warna [%price%$]"
+      create: "&cAnda tidak memiliki cukup uang untuk membuat guild [%price%$]"
+      desc: "&cAnda tidak memiliki cukup uang untuk menetapkan deskripsi [%price%$]"
+      follow: "&cAnda tidak memiliki cukup uang untuk mengaktifkan follow [%price%$]"
+      home: "&cAnda tidak memiliki cukup uang untuk menggunakan perintah home [%price%$]"
+      join: "&cAnda tidak memiliki cukup uang untuk bergabung dengan guild [%price%$]"
+      motd: "&cAnda tidak memiliki cukup uang untuk menetapkan MOTD [%price%$]"
+      nickname: "&cAnda tidak memiliki cukup uang untuk menetapkan nickname [%price%$]"
+      password: "&cAnda tidak memiliki cukup uang untuk menetapkan password [%price%$]"
+      protection: "&cAnda tidak memiliki cukup uang untuk mengaktifkan protection [%price%$]"
+      rename: "&cAnda tidak memiliki cukup uang untuk mengganti nama guild [%price%$]"
+      sethome: "&cAnda tidak memiliki cukup uang untuk menetapkan home [%price%$]"
+      tag: "&cAnda tidak memiliki cukup uang untuk menetapkan tag [%price%$]"
+      teleport: "&cAnda tidak memiliki cukup uang untuk melakukan teleportasi [%price%$]"
     confirm:
-        warn-onbuy: '[{"text":"&aCommand %cmd% costs %price%$.\n"},{"text":"&2&lClick here to confirm","clickEvent":{"action":"run_command","value":"/party confirm"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Pay the command"}]}}},{"text":" &aor type &7/party confirm &ato use it"}]'
-        confirmed: "&aPerforming the command."
-        no-cmd: "&cThere is no command to confirm"
+        warn-onbuy: '[{"text":"&aPerintah %cmd% biaya %price%$.\n"},{"text":"&2&lKlik di sini untuk konfirmasi","clickEvent":{"action":"run_command","value":"/guild confirm"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"&6Bayar perintah"}]}}},{"text":" &aatau ketik &7/guild confirm &auntuk menggunakannya"}]'
+        confirmed: "&aMenuliskan perintah."
+        no-cmd: "&cTidak ada perintah untuk dikonfirmasi"
 
 
 # / =============================== \
@@ -527,32 +541,33 @@ additional-commands:
 other:
   follow:
     # [Special tags]
-    # => %world%          = New world
-    following-world: "&7Following %player% in %world%"
+    # => %world%          = Dunia baru
+    following-world: "&7Mengikuti %player% di %world%"
+    following-server: "&7Mengikuti %player% di %server%"
 
   fixed-parties:
-    default-join: "&bYou entered into %party%"
+    default-join: "&bAnda memasuki %party%"
 
   join-leave:
-    server-join: "&b%player% is online!"
-    server-leave: "&7%player% is offline!"
+    server-join: "&b%player% sedang online!"
+    server-leave: "&7%player% offline!"
 
 
 # / =============================== \
 # |          HELP MESSAGES          |
 # \ =============================== /
 help:
-  header: "&b================= &lParty Help %page%/%maxpages% &r&b================="
+  header: "&b================= &lBantuan Guild %page%/%maxpages% &r&b================="
   footer: ""
-  perform-command: 'Perform the command'
+  perform-command: 'Lakukan perintah'
   console-help:
-    header: 'You can only perform these commands:'
+    header: 'Anda hanya dapat melakukan perintah ini:'
     command: ' > %command% - %description%'
   # [Special tags]
-  # => %syntax%          = Command syntax
-  # => %description%     = Description
-  # => %run_command%     = Command run syntax
-  # => %perform_command% = Perform command message
+  # => %syntax%          = Sintaks perintah
+  # => %description%     = Deskripsi
+  # => %run_command%     = Sintaks menjalankan perintah
+  # => %perform_command% = Pesan melakukan perintah
   main:
     commands:
       help: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
@@ -573,23 +588,23 @@ help:
       spy: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
       version: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"run_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
     descriptions:
-      help: 'Show help pages'
-      accept: 'Accept a party request'
-      chat: 'Toggle party chat'
-      create: 'Create a new party'
-      delete: 'Delete the party'
-      deny: 'Deny a party request'
-      ignore: 'Add/remove/show ignored parties'
-      info: 'Show party information'
-      invite: 'Invite a player to your party'
-      kick: 'Kick a player from the party'
-      leave: 'Leave your party'
-      p: 'Send a message to the party'
-      rank: 'Change rank of the player'
-      reload: 'Reload Parties configuration files'
-      rename: 'Rename the party'
-      spy: 'Spy messages of other parties'
-      version: 'Show Parties information'
+      help: 'Tampilkan halaman bantuan'
+      accept: 'Terima permintaan guild'
+      chat: 'Toggle chat guild'
+      create: 'Buat guild baru'
+      delete: 'Hapus guild'
+      deny: 'Tolak permintaan guild'
+      ignore: 'Tambah/hapus/tampilkan guild yang diabaikan'
+      info: 'Tampilkan informasi guild'
+      invite: 'Undang pemain ke guild Anda'
+      kick: 'Tendang pemain dari guild'
+      leave: 'Tinggalkan guild Anda'
+      p: 'Kirim pesan ke guild'
+      rank: 'Ubah rank pemain'
+      reload: 'Muat ulang file konfigurasi Parties'
+      rename: 'Ubah nama guild'
+      spy: 'Intip pesan guild lain'
+      version: 'Tampilkan informasi Parties'
   additional:
     commands:
       ask: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
@@ -611,28 +626,33 @@ help:
       protection: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
       sethome: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
       tag: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
+      tax: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
+      xp: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"suggest_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
       teleport: '{"text":"&b/%syntax% &7- %description%","clickEvent":{"action":"run_command","value":"/%run_command% "},"hoverEvent":{"action":"show_text","value":{"text":"&6%perform_command%"}}}'
     descriptions:
-      ask: 'Send a join request'
-      claim: 'Grant permissions to the claim'
-      close: 'Close the party'
-      color: 'Change party color'
-      createfixed: 'Create a new fixed party'
-      debug: 'Debug issues'
-      desc: 'Set/remove party description'
-      follow: 'Toggle follow leader'
-      home: 'Teleport to the party home'
-      join: 'Join into the party'
-      list: 'List of online parties'
-      motd: 'Set/remove party motd'
-      mute: 'Toggle notifications'
-      nickname: 'Set/remove member nickname'
-      open: 'Open the party'
-      password: 'Change party password'
+      ask: 'Kirim permintaan bergabung'
+      claim: 'Berikan izin ke klaim'
+      close: 'Tutup guild'
+      color: 'Ubah warna guild'
+      createfixed: 'Buat guild tetap baru'
+      debug: 'Debug masalah'
+      desc: 'Atur/hapus deskripsi guild'
+      follow: 'Toggle follow pemimpin'
+      home: 'Teleportasi ke home guild'
+      join: 'Bergabung ke guild'
+      list: 'Daftar guild online'
+      motd: 'Atur/hapus motd guild'
+      mute: 'Toggle notifikasi'
+      nickname: 'Atur/hapus nickname anggota'
+      open: 'Buka guild'
+      password: 'Ubah password guild'
       protection: 'Toggle friendly fire protection'
-      sethome: 'Set/remove party home'
-      tag: 'Set/remove party tag'
-      teleport: 'Teleport your party to you'
+      sethome: 'Atur/hapus home guild'
+      tag: 'Atur/hapus tag guild'
+      tax: 'Tampilkan atau bayar pajak guild'
+      xp: 'Toggle kontribusi XP guild'
+      teleport: 'Teleportasi guild Anda ke Anda'
 
 dont-edit-this:
   version: 16
+

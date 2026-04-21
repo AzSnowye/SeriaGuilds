@@ -9,18 +9,22 @@ import com.alessiodp.parties.api.events.common.player.IPlayerPostLeaveEvent;
 import com.alessiodp.parties.api.events.common.player.IPlayerPreLeaveEvent;
 import com.alessiodp.parties.common.PartiesPlugin;
 import com.alessiodp.parties.common.configuration.PartiesConstants;
+import com.alessiodp.parties.common.configuration.data.ConfigMain;
 import com.alessiodp.parties.common.configuration.data.ConfigParties;
 import com.alessiodp.parties.common.configuration.data.Messages;
 import com.alessiodp.parties.common.parties.objects.PartyImpl;
 import com.alessiodp.parties.api.enums.DeleteCause;
 import com.alessiodp.parties.common.players.objects.PartyPlayerImpl;
 import com.alessiodp.parties.common.storage.PartiesDatabaseManager;
+import com.alessiodp.parties.common.utils.TagUtils;
 import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map.Entry;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public abstract class PartyManager {
 	protected final PartiesPlugin plugin;
@@ -179,6 +183,68 @@ public abstract class PartyManager {
 	public boolean existsTag(String tag) {
 		return getCacheParties().values().stream().anyMatch(p -> tag.equalsIgnoreCase(p.getTag()))
 				|| plugin.getDatabaseManager().existsTag(tag);
+	}
+
+	public boolean existsTagByVisibleText(String tag) {
+		String normalized = TagUtils.normalizeVisible(tag);
+		if (normalized.isEmpty()) {
+			return false;
+		}
+
+		for (PartyImpl party : getCacheParties().values()) {
+			if (normalized.equals(TagUtils.normalizeVisible(party.getTag()))) {
+				return true;
+			}
+		}
+
+		LinkedHashSet<PartyImpl> allParties = plugin.getDatabaseManager().getListParties(PartiesDatabaseManager.ListOrder.NAME, Integer.MAX_VALUE, 0);
+		for (PartyImpl party : allParties) {
+			if (normalized.equals(TagUtils.normalizeVisible(party.getTag()))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public double getGuildTaxAmount(PartyImpl party) {
+		int members = Math.max(1, party.getMembers().size());
+		return ConfigMain.ADDITIONAL_GUILD_TAX_BASE_PER_MEMBER * members;
+	}
+
+	public long getGuildTaxRemainingMillis(PartyImpl party, long now) {
+		long expiresAt = getGuildTaxDueTimestamp(party);
+		return Math.max(0, expiresAt - now);
+	}
+
+	public long getGuildTaxCycleMillis() {
+		return TimeUnit.DAYS.toMillis(Math.max(1, ConfigMain.ADDITIONAL_GUILD_TAX_EXPIRE_DAYS));
+	}
+
+	public boolean isGuildTaxPaidForCurrentCycle(PartyImpl party, long now) {
+		long lastPayment = party.getTaxLastPaymentTimestamp();
+		if (lastPayment <= 0) {
+			return false;
+		}
+		return now < (lastPayment + getGuildTaxCycleMillis());
+	}
+
+	public UUID getGuildTaxCurrentPayer(PartyImpl party, long now) {
+		if (!isGuildTaxPaidForCurrentCycle(party, now)) {
+			return null;
+		}
+		return party.getTaxLastPayer();
+	}
+
+	public void markGuildTaxPaid(PartyImpl party, UUID payer, long paidAt) {
+		party.setTaxLastPaymentTimestamp(paidAt);
+		party.setTaxLastPayer(payer);
+	}
+
+	private long getGuildTaxDueTimestamp(PartyImpl party) {
+		long baseTimestamp = party.getTaxLastPaymentTimestamp() > 0
+				? party.getTaxLastPaymentTimestamp()
+				: party.getCreationTimestamp();
+		return baseTimestamp + getGuildTaxCycleMillis();
 	}
 	
 	public PartyImpl getPartyOfPlayer(PartyPlayerImpl player) {

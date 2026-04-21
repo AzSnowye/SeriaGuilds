@@ -14,10 +14,10 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface PostgreSQLPartiesDao extends PartiesDao {
-	String QUERY_UPDATE = "INSERT INTO <prefix>parties (\"id\", \"name\", \"tag\", \"leader\", \"description\", \"motd\", \"color\", \"kills\", \"password\", \"home\", \"protection\", \"experience\", \"follow\", \"isopen\")" +
-			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
+	String QUERY_UPDATE = "INSERT INTO <prefix>parties (\"id\", \"name\", \"tag\", \"leader\", \"description\", \"motd\", \"color\", \"kills\", \"password\", \"home\", \"protection\", \"experience\", \"follow\", \"isopen\", \"created_at\", \"tax_last_paid\", \"tax_last_payer\")" +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
 			" ON CONFLICT (\"id\") DO" +
-			" UPDATE SET name=EXCLUDED.name, tag=EXCLUDED.tag, leader=EXCLUDED.leader, description=EXCLUDED.description, motd=EXCLUDED.motd, color=EXCLUDED.color, kills=EXCLUDED.kills, password=EXCLUDED.password, home=EXCLUDED.home, protection=EXCLUDED.protection, experience=EXCLUDED.experience, follow=EXCLUDED.follow, isopen=EXCLUDED.isopen";
+			" UPDATE SET name=EXCLUDED.name, tag=EXCLUDED.tag, leader=EXCLUDED.leader, description=EXCLUDED.description, motd=EXCLUDED.motd, color=EXCLUDED.color, kills=EXCLUDED.kills, password=EXCLUDED.password, home=EXCLUDED.home, protection=EXCLUDED.protection, experience=EXCLUDED.experience, follow=EXCLUDED.follow, isopen=EXCLUDED.isopen, created_at=EXCLUDED.created_at, tax_last_paid=EXCLUDED.tax_last_paid, tax_last_payer=EXCLUDED.tax_last_payer";
 	String QUERY_REMOVE = "DELETE FROM <prefix>parties WHERE \"id\"=?";
 	String QUERY_EXISTS = "SELECT EXISTS(SELECT * FROM <prefix>parties WHERE \"name\"=?)";
 	String QUERY_GET = "SELECT * FROM <prefix>parties WHERE \"id\"=?";
@@ -38,8 +38,8 @@ public interface PostgreSQLPartiesDao extends PartiesDao {
 	String QUERY_DELETE_ALL = "DELETE FROM <prefix>parties";
 	
 	@SqlUpdate(QUERY_UPDATE)
-	void update(String id, String name, String tag, String leader, String description, String motd, String color, int kills, String password, String home, boolean protection, double experience, boolean follow, Boolean isopen);
-	
+	void update(String id, String name, String tag, String leader, String description, String motd, String color, int kills, String password, String home, boolean protection, double experience, boolean follow, Boolean isopen, long createdAt, long taxLastPaid, String taxLastPayer);
+
 	@SqlUpdate(QUERY_REMOVE)
 	void remove(String id);
 	

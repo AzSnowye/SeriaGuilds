@@ -14,11 +14,11 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface PartiesDao {
-	String QUERY_UPDATE = "INSERT INTO `<prefix>parties` (`id`, `name`, `tag`, `leader`, `description`, `motd`, `color`, `kills`, `password`, `home`, `protection`, `experience`, `follow`, `isopen`)" +
-			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
+	String QUERY_UPDATE = "INSERT INTO `<prefix>parties` (`id`, `name`, `tag`, `leader`, `description`, `motd`, `color`, `kills`, `password`, `home`, `protection`, `experience`, `follow`, `isopen`, `created_at`, `tax_last_paid`, `tax_last_payer`)" +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
 			" ON DUPLICATE KEY" +
-			" UPDATE `name`=VALUES(`name`), `tag`=VALUES(`tag`), `leader`=VALUES(`leader`), `description`=VALUES(`description`), `motd`=VALUES(`motd`), `color`=VALUES(`color`), `kills`=VALUES(`kills`), `password`=VALUES(`password`), `home`=VALUES(`home`), `protection`=VALUES(`protection`), `experience`=VALUES(`experience`), `follow`=VALUES(`follow`), `isopen`=VALUES(`isopen`)";
-	
+			" UPDATE `name`=VALUES(`name`), `tag`=VALUES(`tag`), `leader`=VALUES(`leader`), `description`=VALUES(`description`), `motd`=VALUES(`motd`), `color`=VALUES(`color`), `kills`=VALUES(`kills`), `password`=VALUES(`password`), `home`=VALUES(`home`), `protection`=VALUES(`protection`), `experience`=VALUES(`experience`), `follow`=VALUES(`follow`), `isopen`=VALUES(`isopen`), `created_at`=VALUES(`created_at`), `tax_last_paid`=VALUES(`tax_last_paid`), `tax_last_payer`=VALUES(`tax_last_payer`)";
+
 	String QUERY_REMOVE = "DELETE FROM `<prefix>parties` WHERE `id`=?";
 	String QUERY_EXISTS = "SELECT EXISTS(SELECT * FROM `<prefix>parties` WHERE `name`=?)";
 	String QUERY_GET = "SELECT * FROM `<prefix>parties` WHERE `id`=?";
@@ -39,8 +39,8 @@ public interface PartiesDao {
 	String QUERY_DELETE_ALL = "DELETE FROM `<prefix>parties`";
 	
 	@SqlUpdate(QUERY_UPDATE)
-	void update(String id, String name, String tag, String leader, String description, String motd, String color, int kills, String password, String home, boolean protection, double experience, boolean follow, Boolean isopen);
-	
+	void update(String id, String name, String tag, String leader, String description, String motd, String color, int kills, String password, String home, boolean protection, double experience, boolean follow, Boolean isopen, long createdAt, long taxLastPaid, String taxLastPayer);
+
 	@SqlUpdate(QUERY_REMOVE)
 	void remove(String id);
 	

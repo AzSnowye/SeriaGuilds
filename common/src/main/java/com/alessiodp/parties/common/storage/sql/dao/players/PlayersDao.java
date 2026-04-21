@@ -10,9 +10,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface PlayersDao {
-	String QUERY_UPDATE = "INSERT INTO `<prefix>players` (`uuid`, `party`, `rank`, `nickname`, `chat`, `spy`, `mute`)" +
-			" VALUES (?, ?, ?, ?, ?, ?, ?)" +
-			" ON DUPLICATE KEY UPDATE `party`=VALUES(`party`), `rank`=VALUES(`rank`), `nickname`=VALUES(`nickname`), `chat`=VALUES(`chat`), `spy`=VALUES(`spy`), `mute`=VALUES(`mute`)";
+	String QUERY_UPDATE = "INSERT INTO `<prefix>players` (`uuid`, `party`, `rank`, `nickname`, `chat`, `spy`, `mute`, `xp_contribution`)" +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?)" +
+			" ON DUPLICATE KEY UPDATE `party`=VALUES(`party`), `rank`=VALUES(`rank`), `nickname`=VALUES(`nickname`), `chat`=VALUES(`chat`), `spy`=VALUES(`spy`), `mute`=VALUES(`mute`), `xp_contribution`=VALUES(`xp_contribution`)";
 	String QUERY_REMOVE = "DELETE FROM `<prefix>players` WHERE `uuid` = ?";
 	String QUERY_GET = "SELECT * FROM `<prefix>players` WHERE `uuid` = ?";
 	String QUERY_GET_IN_PARTY = "SELECT * FROM `<prefix>players` WHERE `party` = ?";
@@ -21,8 +21,8 @@ public interface PlayersDao {
 	String QUERY_DELETE_ALL = "DELETE FROM `<prefix>players`";
 	
 	@SqlUpdate(QUERY_UPDATE)
-	void update(String uuid, String party, int rank, String nickname, boolean chat, boolean spy, boolean mute);
-	
+	void update(String uuid, String party, int rank, String nickname, boolean chat, boolean spy, boolean mute, boolean xpContribution);
+
 	@SqlUpdate(QUERY_REMOVE)
 	void remove(String uuid);
 	

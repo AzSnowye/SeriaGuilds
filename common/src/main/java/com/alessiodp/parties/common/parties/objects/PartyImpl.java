@@ -41,6 +41,7 @@ import com.alessiodp.parties.common.players.objects.PartyPlayerImpl;
 import com.alessiodp.parties.common.players.objects.SpyMessage;
 import com.alessiodp.parties.common.utils.PasswordUtils;
 import com.alessiodp.parties.common.utils.RankPermission;
+import com.alessiodp.parties.common.utils.TagUtils;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -59,6 +60,9 @@ import java.util.concurrent.TimeUnit;
 @EqualsAndHashCode
 @ToString
 public abstract class PartyImpl implements Party {
+	private static final int AUTO_TAG_LENGTH = 3;
+	private static final String AUTO_TAG_FALLBACK = "GLD";
+
 	@EqualsAndHashCode.Exclude @ToString.Exclude protected final PartiesPlugin plugin;
 	
 	// Interface fields
@@ -77,6 +81,9 @@ public abstract class PartyImpl implements Party {
 	private boolean protection;
 	@Getter private double experience;
 	private boolean followEnabled;
+	@Getter private long creationTimestamp;
+	@Getter private long taxLastPaymentTimestamp;
+	@Nullable @Getter private UUID taxLastPayer;
 	
 	// Plugin fields
 	@EqualsAndHashCode.Exclude @ToString.Exclude @Getter @Setter private PartyColor dynamicColor;
@@ -105,6 +112,9 @@ public abstract class PartyImpl implements Party {
 		protection = false;
 		experience = 0;
 		followEnabled = false;
+		creationTimestamp = System.currentTimeMillis();
+		taxLastPaymentTimestamp = 0;
+		taxLastPayer = null;
 		
 		expResult = new ExpResult();
 		cacheExperience = -1;
@@ -168,6 +178,7 @@ public abstract class PartyImpl implements Party {
 		CompletableFuture<Void> futureAfterUpdate;
 		synchronized (this) {
 			this.name = name;
+			this.tag = generateAutoTag(name);
 			
 			if (leader == null) {
 				// Fixed
@@ -185,6 +196,9 @@ public abstract class PartyImpl implements Party {
 				leader.addIntoParty(id, ConfigParties.RANK_SET_HIGHER);
 				
 			}
+			creationTimestamp = System.currentTimeMillis();
+			taxLastPaymentTimestamp = 0;
+			taxLastPayer = null;
 			futureAfterUpdate = updateParty();
 			
 			plugin.getPartyManager().addPartyToCache(this);
@@ -194,6 +208,32 @@ public abstract class PartyImpl implements Party {
 		futureAfterUpdate.thenRun(() -> sendPacketCreate(creator)).exceptionally(ADPScheduler.exceptionally());
 		
 		plugin.getLoggerManager().logDebug(String.format(PartiesConstants.DEBUG_PARTY_CREATE, getName() != null ? getName() : "_"), true);
+	}
+
+	private @NotNull String generateAutoTag(@Nullable String partyName) {
+		String base = TagUtils.firstLetters(partyName, AUTO_TAG_LENGTH);
+		if (base.isEmpty()) {
+			base = AUTO_TAG_FALLBACK;
+		}
+
+		if (!plugin.getPartyManager().existsTagByVisibleText(base)) {
+			return base;
+		}
+
+		for (int index = 1; index <= 999; index++) {
+			String suffix = Integer.toString(index);
+			int prefixLength = Math.max(1, AUTO_TAG_LENGTH - suffix.length());
+			String candidate = (base.substring(0, Math.min(prefixLength, base.length())) + suffix).toUpperCase();
+			if (candidate.length() > AUTO_TAG_LENGTH) {
+				candidate = candidate.substring(0, AUTO_TAG_LENGTH);
+			}
+
+			if (!plugin.getPartyManager().existsTagByVisibleText(candidate)) {
+				return candidate;
+			}
+		}
+
+		return base;
 	}
 	
 	@Override
@@ -506,6 +546,18 @@ public abstract class PartyImpl implements Party {
 			
 			calculateLevels();
 		});
+	}
+
+	public void setCreationTimestamp(long creationTimestamp) {
+		updateValue(() -> this.creationTimestamp = creationTimestamp);
+	}
+
+	public void setTaxLastPaymentTimestamp(long taxLastPaymentTimestamp) {
+		updateValue(() -> this.taxLastPaymentTimestamp = taxLastPaymentTimestamp);
+	}
+
+	public void setTaxLastPayer(@Nullable UUID taxLastPayer) {
+		updateValue(() -> this.taxLastPayer = taxLastPayer);
 	}
 	
 	@Override

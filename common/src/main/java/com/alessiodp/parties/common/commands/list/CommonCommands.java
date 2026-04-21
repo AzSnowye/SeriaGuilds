@@ -23,6 +23,8 @@ public enum CommonCommands implements ADPCommand {
 	RENAME,
 	SPY,
 	TAG,
+	TAX,
+	XP,
 	VERSION,
 	
 	CLOSE,

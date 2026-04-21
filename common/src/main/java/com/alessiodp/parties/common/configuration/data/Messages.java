@@ -400,7 +400,11 @@ public abstract class Messages extends ConfigurationFile {
 	public static String ADDCMD_EXP_PARTY_GAINED_EXPERIENCE;
 	@ConfigOption(path = "additional-commands.exp.level-up")
 	public static String ADDCMD_EXP_PARTY_LEVEL_UP;
-	
+	@ConfigOption(path = "additional-commands.exp-share.toggle-on")
+	public static String ADDCMD_EXP_SHARE_TOGGLE_ON;
+	@ConfigOption(path = "additional-commands.exp-share.toggle-off")
+	public static String ADDCMD_EXP_SHARE_TOGGLE_OFF;
+
 	@ConfigOption(path = "additional-commands.follow.toggle-on")
 	public static String ADDCMD_FOLLOW_ON;
 	@ConfigOption(path = "additional-commands.follow.toggle-off")
@@ -549,7 +553,24 @@ public abstract class Messages extends ConfigurationFile {
 	public static String ADDCMD_TAG_CENSORED;
 	@ConfigOption(path = "additional-commands.tag.already-used")
 	public static String ADDCMD_TAG_ALREADY_USED;
-	
+
+	@ConfigOption(path = "additional-commands.tax.info")
+	public static String ADDCMD_TAX_INFO;
+	@ConfigOption(path = "additional-commands.tax.paid")
+	public static String ADDCMD_TAX_PAID;
+	@ConfigOption(path = "additional-commands.tax.already-paid")
+	public static String ADDCMD_TAX_ALREADY_PAID;
+	@ConfigOption(path = "additional-commands.tax.failed")
+	public static String ADDCMD_TAX_FAILED;
+	@ConfigOption(path = "additional-commands.tax.no-economy")
+	public static String ADDCMD_TAX_NO_ECONOMY;
+	@ConfigOption(path = "additional-commands.tax.status-paid")
+	public static String ADDCMD_TAX_STATUS_PAID;
+	@ConfigOption(path = "additional-commands.tax.status-unpaid")
+	public static String ADDCMD_TAX_STATUS_UNPAID;
+	@ConfigOption(path = "additional-commands.tax.auto-delete-broadcast")
+	public static String ADDCMD_TAX_AUTO_DELETE_BROADCAST;
+
 	@ConfigOption(path = "additional-commands.teleport.teleporting")
 	public static String ADDCMD_TELEPORT_TELEPORTING;
 	@ConfigOption(path = "additional-commands.teleport.player-teleported")
@@ -698,7 +719,11 @@ public abstract class Messages extends ConfigurationFile {
 	public static String HELP_ADDITIONAL_COMMANDS_TELEPORT;
 	@ConfigOption(path = "help.additional.commands.tag")
 	public static String HELP_ADDITIONAL_COMMANDS_TAG;
-	
+	@ConfigOption(path = "help.additional.commands.tax")
+	public static String HELP_ADDITIONAL_COMMANDS_TAX;
+	@ConfigOption(path = "help.additional.commands.xp")
+	public static String HELP_ADDITIONAL_COMMANDS_XP;
+
 	@ConfigOption(path = "help.additional.descriptions.ask")
 	public static String HELP_ADDITIONAL_DESCRIPTIONS_ASK;
 	@ConfigOption(path = "help.additional.descriptions.close")
@@ -737,7 +762,11 @@ public abstract class Messages extends ConfigurationFile {
 	public static String HELP_ADDITIONAL_DESCRIPTIONS_TAG;
 	@ConfigOption(path = "help.additional.descriptions.teleport")
 	public static String HELP_ADDITIONAL_DESCRIPTIONS_TELEPORT;
-	
+	@ConfigOption(path = "help.additional.descriptions.tax")
+	public static String HELP_ADDITIONAL_DESCRIPTIONS_TAX;
+	@ConfigOption(path = "help.additional.descriptions.xp")
+	public static String HELP_ADDITIONAL_DESCRIPTIONS_XP;
+
 	
 	protected Messages(PartiesPlugin plugin) {
 		super(plugin);

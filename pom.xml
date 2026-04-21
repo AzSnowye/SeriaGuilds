@@ -9,8 +9,8 @@
 	<version>3.2.18</version>
 	<packaging>pom</packaging>
 	
-	<name>Parties</name>
-	<description>Party manager for Minecraft servers</description>
+	<name>Guilds</name>
+	<description>Guild manager for Minecraft servers</description>
 	<url>https://alessiodp.com/parties</url>
 	
 	<licenses>
@@ -53,9 +53,9 @@
 	</modules>
 	
 	<properties>
-		<plugin.id>parties</plugin.id>
-		<plugin.name>Parties</plugin.name>
-		<plugin.description>Party manager for Minecraft servers</plugin.description>
+		<plugin.id>guilds</plugin.id>
+		<plugin.name>Guilds</plugin.name>
+		<plugin.description>Guild manager for Minecraft servers</plugin.description>
 		<plugin.author>AlessioDP</plugin.author>
 		<plugin.website>https://alessiodp.com/parties</plugin.website>
 		<plugin.version>${project.version}</plugin.version>

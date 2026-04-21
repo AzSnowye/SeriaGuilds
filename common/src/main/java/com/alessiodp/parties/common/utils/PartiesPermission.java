@@ -40,7 +40,9 @@ public enum PartiesPermission implements ADPPermission {
 	USER_SENDMESSAGE	("parties.user.sendmessage"),
 	USER_SETHOME		("parties.user.sethome"),
 	USER_TAG			("parties.user.tag"),
+	USER_TAX			("parties.user.tax"),
 	USER_TELEPORT		("parties.user.teleport"),
+	USER_XP			("parties.user.xp"),
 	// Bukkit
 	USER_CLAIM			("parties.user.claim"),
 	

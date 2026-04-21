@@ -111,6 +111,30 @@ public abstract class ConfigMain extends ConfigurationFile {
 	public static boolean		ADDITIONAL_EXP_FIXED_REPEAT;
 	@ConfigOption(path = "additional.exp-system.fixed.list")
 	public static List<Double>	ADDITIONAL_EXP_FIXED_LIST;
+
+	@ConfigOption(path = "additional.guild-xp-sharing.enable")
+	public static boolean		ADDITIONAL_GUILD_XP_SHARING_ENABLE;
+	@ConfigOption(path = "additional.guild-xp-sharing.share-percent")
+	public static double		ADDITIONAL_GUILD_XP_SHARING_PERCENT;
+	@ConfigOption(path = "additional.guild-xp-sharing.require-nearby")
+	public static boolean		ADDITIONAL_GUILD_XP_SHARING_REQUIRE_NEARBY;
+	@ConfigOption(path = "additional.guild-xp-sharing.nearby-radius")
+	public static double		ADDITIONAL_GUILD_XP_SHARING_RADIUS;
+	@ConfigOption(path = "additional.guild-xp-sharing.round-shared-xp")
+	public static boolean		ADDITIONAL_GUILD_XP_SHARING_ROUND_SHARED_XP;
+	@ConfigOption(path = "additional.guild-xp-sharing.deduct-without-nearby")
+	public static boolean		ADDITIONAL_GUILD_XP_SHARING_DEDUCT_WITHOUT_NEARBY;
+	@ConfigOption(path = "additional.guild-xp-sharing.auraskills-hook")
+	public static boolean		ADDITIONAL_GUILD_XP_SHARING_AURASKILLS_HOOK;
+
+	@ConfigOption(path = "additional.guild-tax.enable")
+	public static boolean		ADDITIONAL_GUILD_TAX_ENABLE;
+	@ConfigOption(path = "additional.guild-tax.base-per-member")
+	public static double		ADDITIONAL_GUILD_TAX_BASE_PER_MEMBER;
+	@ConfigOption(path = "additional.guild-tax.expire-days")
+	public static int			ADDITIONAL_GUILD_TAX_EXPIRE_DAYS;
+	@ConfigOption(path = "additional.guild-tax.check-interval-minutes")
+	public static int			ADDITIONAL_GUILD_TAX_CHECK_INTERVAL_MINUTES;
 	
 	@ConfigOption(path = "additional.follow.enable")
 	public static boolean		ADDITIONAL_FOLLOW_ENABLE;
@@ -225,6 +249,10 @@ public abstract class ConfigMain extends ConfigurationFile {
 	public static String		COMMANDS_SUB_TAG;
 	@ConfigOption(path = "commands.sub-commands.teleport")
 	public static String		COMMANDS_SUB_TELEPORT;
+	@ConfigOption(path = "commands.sub-commands.xp")
+	public static String		COMMANDS_SUB_XP;
+	@ConfigOption(path = "commands.sub-commands.tax")
+	public static String		COMMANDS_SUB_TAX;
 	@ConfigOption(path = "commands.sub-commands.version")
 	public static String		COMMANDS_SUB_VERSION;
 	
@@ -244,6 +272,8 @@ public abstract class ConfigMain extends ConfigurationFile {
 	public static String		COMMANDS_MISC_SILENT;
 	@ConfigOption(path = "commands.misc-commands.remove")
 	public static String		COMMANDS_MISC_REMOVE;
+	@ConfigOption(path = "commands.misc-commands.pay")
+	public static String		COMMANDS_MISC_PAY;
 	
 	@ConfigOption(path = "commands.order")
 	public static List<String>	COMMANDS_ORDER;

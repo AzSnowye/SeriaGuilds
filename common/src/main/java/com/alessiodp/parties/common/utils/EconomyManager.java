@@ -9,6 +9,18 @@ public abstract class EconomyManager {
 	protected final PartiesPlugin plugin;
 	
 	public abstract boolean payCommand(PaidCommand vaultCommand, PartyPlayerImpl partyPlayerImpl, String commandLabel, String[] args);
+
+	public boolean isEconomyAvailable() {
+		return false;
+	}
+
+	public boolean hasBalance(PartyPlayerImpl partyPlayerImpl, double amount) {
+		return false;
+	}
+
+	public boolean withdraw(PartyPlayerImpl partyPlayerImpl, double amount) {
+		return false;
+	}
 	
 	public enum PaidCommand {
 		ASK, CLAIM, CLOSE, COLOR, CREATE, DESC, FOLLOW, HOME, JOIN, MOTD, NICKNAME, OPEN, PASSWORD, PROTECTION, RENAME, SETHOME, TAG, TELEPORT

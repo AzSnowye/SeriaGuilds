@@ -166,6 +166,25 @@ additional:
       - 650
       - 900
 
+  # [Guild XP sharing]
+  # Share a percentage of gained XP with nearby guild mates.
+  guild-xp-sharing:
+    enable: true
+    share-percent: 10.0
+    require-nearby: true
+    nearby-radius: 20.0
+    round-shared-xp: true
+    deduct-without-nearby: true
+    auraskills-hook: true
+
+  # [Guild tax]
+  # Unpaid guilds are deleted after expire-days; any member can pay with /guild tax pay.
+  guild-tax:
+    enable: true
+    base-per-member: 1000.0
+    expire-days: 7
+    check-interval-minutes: 10
+
 
   # [Follow system]
   # When the party leader joins a server, the entire party will follow him
@@ -201,7 +220,7 @@ additional:
   # Enable mute system.
   # If an user uses mute command, he won't receive notifications
   mute:
-    enable: false
+    enable: true
     block:
       invite: true
 
@@ -226,7 +245,7 @@ commands:
     commands-per-page: 9
   main-commands:
     party:
-      command: 'party'
+      command: 'guild'
       aliases: []
     p:
       command: 'p'
@@ -267,16 +286,19 @@ commands:
     spy: 'spy'
     tag: 'tag'
     teleport: 'teleport'
+    tax: 'tax'
+    xp: 'xp'
     version: 'version'
   misc-commands:
     config: 'config'
     exp: 'exp'
-    party: 'party'
+    party: 'guild'
     player: 'player'
     word-on: 'on'
     word-off: 'off'
     silent: 'silent'
     remove: 'remove'
+    pay: 'pay'
   order:
   - help
   - create
@@ -306,6 +328,8 @@ commands:
   - color
   - claim
   - teleport
+  - xp
+  - tax
   - password
   - rank
   - rename

@@ -121,6 +121,8 @@ public class PartiesSQLDispatcher extends SQLDispatcher implements IPartiesDatab
 				break;
 		}
 		ret.add("2__Added_open.sql");
+		ret.add("3__Added_tax_and_xp.sql");
+		ret.add("4__tax_last_payer.sql");
 		return ret;
 	}
 	
@@ -134,7 +136,8 @@ public class PartiesSQLDispatcher extends SQLDispatcher implements IPartiesDatab
 					player.getPartyId() != null ? player.getNickname() : null,
 					player.isChatParty(),
 					player.isSpy(),
-					player.isMuted()
+					player.isMuted(),
+					player.isXpContributionEnabled()
 			));
 		} else {
 			this.connectionFactory.getJdbi().useHandle(handle -> handle.attach(playersDao).remove(player.getPlayerUUID().toString()));
@@ -167,7 +170,10 @@ public class PartiesSQLDispatcher extends SQLDispatcher implements IPartiesDatab
 				party.getProtection(),
 				party.getExperience(),
 				party.isFollowEnabled(),
-				party.isOpenNullable()
+				party.isOpenNullable(),
+				party.getCreationTimestamp(),
+				party.getTaxLastPaymentTimestamp(),
+				party.getTaxLastPayer() != null ? party.getTaxLastPayer().toString() : null
 		));
 	}
 	

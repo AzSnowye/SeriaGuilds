@@ -30,6 +30,18 @@ public class PartyRowMapper implements RowMapper<PartyImpl> {
 		boolean isopen = rs.getBoolean("isopen");
 		if (!rs.wasNull())
 			ret.setOpenNullable(isopen);
+		ret.setCreationTimestamp(rs.getLong("created_at"));
+		ret.setTaxLastPaymentTimestamp(rs.getLong("tax_last_paid"));
+		String taxLastPayer = rs.getString("tax_last_payer");
+		if (taxLastPayer != null && !taxLastPayer.isEmpty()) {
+			try {
+				ret.setTaxLastPayer(UUID.fromString(taxLastPayer));
+			} catch (IllegalArgumentException ex) {
+				ret.setTaxLastPayer(null);
+			}
+		} else {
+			ret.setTaxLastPayer(null);
+		}
 		ret.setAccessible(false);
 		
 		return ret;

@@ -3,6 +3,7 @@ package com.alessiodp.parties.common.commands.main;
 import com.alessiodp.core.common.commands.list.ADPCommand;
 import com.alessiodp.core.common.commands.utils.ADPExecutableCommand;
 import com.alessiodp.core.common.commands.utils.ADPMainCommand;
+import com.alessiodp.core.common.commands.utils.ADPSubCommand;
 import com.alessiodp.core.common.user.User;
 import com.alessiodp.core.common.utils.Color;
 import com.alessiodp.core.common.utils.CommonUtils;
@@ -37,7 +38,9 @@ import com.alessiodp.parties.common.commands.sub.CommandReload;
 import com.alessiodp.parties.common.commands.sub.CommandRename;
 import com.alessiodp.parties.common.commands.sub.CommandSpy;
 import com.alessiodp.parties.common.commands.sub.CommandTag;
+import com.alessiodp.parties.common.commands.sub.CommandTax;
 import com.alessiodp.parties.common.commands.sub.CommandVersion;
+import com.alessiodp.parties.common.commands.sub.CommandXp;
 import com.alessiodp.parties.common.commands.list.CommonCommands;
 import com.alessiodp.parties.common.configuration.data.ConfigMain;
 import com.alessiodp.parties.common.configuration.data.ConfigParties;
@@ -138,6 +141,14 @@ public abstract class CommandParty extends ADPMainCommand {
 			// Tag
 			if (ConfigParties.ADDITIONAL_TAG_ENABLE)
 				register(new CommandTag(plugin, this));
+
+			// XP sharing
+			if (ConfigMain.ADDITIONAL_GUILD_XP_SHARING_ENABLE)
+				register(new CommandXp(plugin, this));
+
+			// Guild tax
+			if (ConfigMain.ADDITIONAL_GUILD_TAX_ENABLE)
+				register(new CommandTax(plugin, this));
 		}
 	}
 	
@@ -156,8 +167,9 @@ public abstract class CommandParty extends ADPMainCommand {
 				subCommand = CommonUtils.toLowerCase(args[0]);
 			}
 			
-			if (exists(subCommand)) {
-				plugin.getCommandManager().getCommandUtils().executeCommand(sender, getCommandName(), getSubCommand(subCommand), args);
+			ADPExecutableCommand executableCommand = getSubCommand(subCommand);
+			if (executableCommand != null) {
+				plugin.getCommandManager().getCommandUtils().executeCommand(sender, getCommandName(), (ADPSubCommand) executableCommand, args);
 			} else {
 				sender.sendMessage(Messages.PARTIES_COMMON_INVALIDCMD, true);
 			}
@@ -165,8 +177,9 @@ public abstract class CommandParty extends ADPMainCommand {
 			// Console
 			if (args.length > 0) {
 				subCommand = CommonUtils.toLowerCase(args[0]);
-				if (exists(subCommand) && getSubCommand(subCommand).isExecutableByConsole()) {
-					plugin.getCommandManager().getCommandUtils().executeCommand(sender, getCommandName(), getSubCommand(subCommand), args);
+				ADPExecutableCommand executableCommand = getSubCommand(subCommand);
+				if (executableCommand != null && executableCommand.isExecutableByConsole()) {
+					plugin.getCommandManager().getCommandUtils().executeCommand(sender, getCommandName(), (ADPSubCommand) executableCommand, args);
 				} else {
 					plugin.getLogger().info(Color.translateAndStripColor(Messages.PARTIES_COMMON_INVALIDCMD));
 				}

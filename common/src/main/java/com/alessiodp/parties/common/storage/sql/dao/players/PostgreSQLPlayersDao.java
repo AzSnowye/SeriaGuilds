@@ -10,9 +10,9 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface PostgreSQLPlayersDao extends PlayersDao {
-	String QUERY_UPDATE = "INSERT INTO <prefix>players (\"uuid\", \"party\", \"rank\", \"nickname\", \"chat\", \"spy\", \"mute\")" +
-			" VALUES (?, ?, ?, ?, ?, ?, ?)" +
-			" ON CONFLICT (\"uuid\") DO UPDATE SET party=EXCLUDED.party, rank=EXCLUDED.rank, nickname=EXCLUDED.nickname, chat=EXCLUDED.chat, spy=EXCLUDED.spy, mute=EXCLUDED.mute";
+	String QUERY_UPDATE = "INSERT INTO <prefix>players (\"uuid\", \"party\", \"rank\", \"nickname\", \"chat\", \"spy\", \"mute\", \"xp_contribution\")" +
+			" VALUES (?, ?, ?, ?, ?, ?, ?, ?)" +
+			" ON CONFLICT (\"uuid\") DO UPDATE SET party=EXCLUDED.party, rank=EXCLUDED.rank, nickname=EXCLUDED.nickname, chat=EXCLUDED.chat, spy=EXCLUDED.spy, mute=EXCLUDED.mute, xp_contribution=EXCLUDED.xp_contribution";
 	String QUERY_REMOVE = "DELETE FROM <prefix>players WHERE \"uuid\" = ?";
 	String QUERY_GET = "SELECT * FROM <prefix>players WHERE \"uuid\" = ?";
 	String QUERY_GET_IN_PARTY = "SELECT * FROM <prefix>players WHERE \"party\" = ?";
@@ -22,8 +22,8 @@ public interface PostgreSQLPlayersDao extends PlayersDao {
 	
 	@Override
 	@SqlUpdate(QUERY_UPDATE)
-	void update(String uuid, String party, int rank, String nickname, boolean chat, boolean spy, boolean mute);
-	
+	void update(String uuid, String party, int rank, String nickname, boolean chat, boolean spy, boolean mute, boolean xpContribution);
+
 	@Override
 	@SqlUpdate(QUERY_REMOVE)
 	void remove(String uuid);

@@ -47,6 +47,7 @@ public abstract class PartyPlayerImpl implements PartyPlayer {
 	@Getter private boolean chatParty;
 	@Getter private boolean spy;
 	@Getter private boolean muted;
+	@Getter private boolean xpContributionEnabled;
 	
 	// Plugin fields
 	@EqualsAndHashCode.Exclude @ToString.Exclude @Getter private final UUID createID;
@@ -73,6 +74,7 @@ public abstract class PartyPlayerImpl implements PartyPlayer {
 		chatParty = false;
 		spy = false;
 		muted = false;
+		xpContributionEnabled = true;
 		
 		createID = UUID.randomUUID();
 		pendingAskRequests = new HashSet<>();
@@ -103,7 +105,7 @@ public abstract class PartyPlayerImpl implements PartyPlayer {
 	}
 	
 	public boolean isPersistent() {
-		return getPartyId() != null || isSpy() || isMuted();
+		return getPartyId() != null || isSpy() || isMuted() || !isXpContributionEnabled();
 	}
 	
 	public CompletableFuture<Void> updatePlayer() {
@@ -210,6 +212,10 @@ public abstract class PartyPlayerImpl implements PartyPlayer {
 		updateValue(() -> {
 			this.muted = muted;
 		});
+	}
+
+	public void setXpContributionEnabled(boolean xpContributionEnabled) {
+		updateValue(() -> this.xpContributionEnabled = xpContributionEnabled);
 	}
 	
 	public void setChatParty(boolean chatParty) {
@@ -398,6 +404,12 @@ public abstract class PartyPlayerImpl implements PartyPlayer {
 						&& player.hasPermission(PartiesPermission.USER_TELEPORT)
 						&& plugin.getRankManager().checkPlayerRank(this, RankPermission.ADMIN_TELEPORT))
 					ret.add(CommonCommands.TELEPORT);
+				if (ConfigMain.ADDITIONAL_GUILD_XP_SHARING_ENABLE
+						&& player.hasPermission(PartiesPermission.USER_XP))
+					ret.add(CommonCommands.XP);
+				if (ConfigMain.ADDITIONAL_GUILD_TAX_ENABLE
+						&& player.hasPermission(PartiesPermission.USER_TAX))
+					ret.add(CommonCommands.TAX);
 				if (ConfigParties.ADDITIONAL_JOIN_OPENCLOSE_ENABLE) {
 					if (player.hasPermission(PartiesPermission.USER_CLOSE)
 							&& plugin.getRankManager().checkPlayerRank(this, RankPermission.EDIT_CLOSE)) {

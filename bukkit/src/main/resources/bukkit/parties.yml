@@ -366,7 +366,7 @@ additional:
     enable: false
     must-be-unique: true
     minimum-length: 3
-    maximum-length: 10
+    maximum-length: 3
     allowed-characters: '[a-zA-Z0-9]+'
     censor-regex: ''
 

@@ -20,6 +20,36 @@ public class BukkitEconomyManager extends EconomyManager {
 	public boolean payCommand(PaidCommand paidCommand, PartyPlayerImpl partyPlayerEntity, String commandLabel, String[] args) {
 		return payCommand(paidCommand, (BukkitPartyPlayerImpl) partyPlayerEntity, commandLabel, args);
 	}
+
+	@Override
+	public boolean isEconomyAvailable() {
+		return BukkitConfigMain.ADDONS_VAULT_ENABLE;
+	}
+
+	@Override
+	public boolean hasBalance(PartyPlayerImpl partyPlayerEntity, double amount) {
+		if (!(partyPlayerEntity instanceof BukkitPartyPlayerImpl) || amount <= 0 || !isEconomyAvailable()) {
+			return false;
+		}
+
+		User bukkitPlayer = plugin.getPlayer(partyPlayerEntity.getPlayerUUID());
+		return bukkitPlayer != null && VaultHandler.getPlayerBalance(bukkitPlayer) >= amount;
+	}
+
+	@Override
+	public boolean withdraw(PartyPlayerImpl partyPlayerEntity, double amount) {
+		if (!(partyPlayerEntity instanceof BukkitPartyPlayerImpl) || amount <= 0 || !isEconomyAvailable()) {
+			return false;
+		}
+
+		User bukkitPlayer = plugin.getPlayer(partyPlayerEntity.getPlayerUUID());
+		if (bukkitPlayer == null || VaultHandler.getPlayerBalance(bukkitPlayer) < amount) {
+			return false;
+		}
+
+		VaultHandler.withdrawPlayer(bukkitPlayer, amount);
+		return true;
+	}
 	
 	private boolean payCommand(PaidCommand vaultCommand, BukkitPartyPlayerImpl partyPlayerEntity, String commandLabel, String[] args) {
 		boolean denyCommand = false;

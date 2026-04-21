@@ -5,8 +5,8 @@ import com.alessiodp.core.common.logging.ConsoleColor;
 public class PartiesConstants {
 	
 	// Plugin settings
-	public static final String PLUGIN_NAME = "Parties";
-	public static final String PLUGIN_FALLBACK = "parties";
+	public static final String PLUGIN_NAME = "Guilds";
+	public static final String PLUGIN_FALLBACK = "guilds";
 	public static final ConsoleColor PLUGIN_CONSOLECOLOR = ConsoleColor.CYAN;
 	public static final String PLUGIN_PACKAGENAME = "com.alessiodp.parties";
 	public static final String PLUGIN_SPIGOTCODE = "3709";

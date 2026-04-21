@@ -20,6 +20,7 @@ import com.alessiodp.parties.common.storage.file.PartiesYAMLUpgradeManager;
 import com.alessiodp.parties.common.storage.interfaces.IPartiesDatabase;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -64,10 +65,11 @@ public class PartiesYAMLDispatcher extends YAMLDispatcher implements IPartiesDat
 				node.set("nickname", null);
 			}
 			
-			if (player.isChatParty() || player.isSpy() || player.isMuted()) {
+			if (player.isChatParty() || player.isSpy() || player.isMuted() || !player.isXpContributionEnabled()) {
 				node.set("options.chat", player.isChatParty() ? true : null);
 				node.set("options.spy", player.isSpy() ? true : null);
 				node.set("options.mute", player.isMuted() ? true : null);
+				node.set("options.xp-contribution", player.isXpContributionEnabled() ? null : false);
 			} else {
 				node.set("options", null);
 			}
@@ -127,7 +129,10 @@ public class PartiesYAMLDispatcher extends YAMLDispatcher implements IPartiesDat
 		node.set("follow", party.isFollowEnabled() ? null : false); // By default is true, so insert it only if false
 		if (party.isOpenNullable() != null)
 			node.set("isopen", party.isOpenNullable());
-		node.set("home", party.getHomes().size() > 0 ? PartyHomeImpl.serializeMultiple(party.getHomes()) : null);
+		node.set("created_at", party.getCreationTimestamp() > 0 ? party.getCreationTimestamp() : null);
+		node.set("tax_last_paid", party.getTaxLastPaymentTimestamp() > 0 ? party.getTaxLastPaymentTimestamp() : null);
+		node.set("tax_last_payer", party.getTaxLastPayer() != null ? party.getTaxLastPayer().toString() : null);
+		node.set("home", !party.getHomes().isEmpty() ? PartyHomeImpl.serializeMultiple(party.getHomes()) : null);
 		node.set("leader", party.getLeader() != null ? party.getLeader().toString() : null);
 		
 		List<String> lt = new ArrayList<>();
@@ -211,7 +216,7 @@ public class PartiesYAMLDispatcher extends YAMLDispatcher implements IPartiesDat
 	}
 	
 	private TreeSet<Pair<String, String>> listByName(ConfigurationSection node, List<String> lowerCaseBlacklist) {
-		TreeSet<Pair<String, String>> ret = new TreeSet<>((p1, p2) -> p1.getValue().compareTo(p2.getValue()));
+		TreeSet<Pair<String, String>> ret = new TreeSet<>(Comparator.comparing(Pair::getValue));
 		for (String key : node.getKeys(false)) {
 			if (!lowerCaseBlacklist.contains(CommonUtils.toLowerCase(node.getString(key + ".name", ""))))
 				ret.add(new Pair<>(key, node.getString(key + ".name")));
@@ -289,6 +294,7 @@ public class PartiesYAMLDispatcher extends YAMLDispatcher implements IPartiesDat
 			}
 			ret.setSpy(node.getBoolean("options.spy", false));
 			ret.setMuted(node.getBoolean("options.mute", false));
+			ret.setXpContributionEnabled(node.getBoolean("options.xp-contribution", true));
 			ret.setAccessible(false);
 		}
 		return ret;
@@ -313,6 +319,18 @@ public class PartiesYAMLDispatcher extends YAMLDispatcher implements IPartiesDat
 			ret.setFollowEnabled(node.getBoolean("follow", true));
 			if (node.isSet("isopen"))
 				ret.setOpenNullable(node.getBoolean("isopen"));
+			ret.setCreationTimestamp(node.getLong("created_at", System.currentTimeMillis()));
+			ret.setTaxLastPaymentTimestamp(node.getLong("tax_last_paid", 0));
+			String taxLastPayer = node.getString("tax_last_payer", null);
+			if (taxLastPayer != null && !taxLastPayer.isEmpty()) {
+				try {
+					ret.setTaxLastPayer(UUID.fromString(taxLastPayer));
+				} catch (IllegalArgumentException ex) {
+					ret.setTaxLastPayer(null);
+				}
+			} else {
+				ret.setTaxLastPayer(null);
+			}
 			ret.setAccessible(false);
 			
 			// Members check

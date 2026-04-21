@@ -22,6 +22,7 @@ public class PartyPlayerRowMapper implements RowMapper<PartyPlayerImpl> {
 		}
 		ret.setSpy(rs.getBoolean("spy"));
 		ret.setMuted(rs.getBoolean("mute"));
+		ret.setXpContributionEnabled(rs.getBoolean("xp_contribution"));
 		ret.setAccessible(false);
 		return ret;
 	}

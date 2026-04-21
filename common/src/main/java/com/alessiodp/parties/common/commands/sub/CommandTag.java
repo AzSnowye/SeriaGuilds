@@ -17,6 +17,7 @@ import com.alessiodp.parties.common.utils.CensorUtils;
 import com.alessiodp.parties.common.utils.EconomyManager;
 import com.alessiodp.parties.common.utils.PartiesPermission;
 import com.alessiodp.parties.common.utils.RankPermission;
+import com.alessiodp.parties.common.utils.TagUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -114,13 +115,16 @@ public class CommandTag extends PartiesSubCommand {
 		}
 		
 		if (tag != null) {
-			if (!CensorUtils.checkAllowedCharacters(ConfigParties.ADDITIONAL_TAG_ALLOWEDCHARS, tag, PartiesConstants.DEBUG_CMD_TAG_REGEXERROR_AC)
-					|| (tag.length() > ConfigParties.ADDITIONAL_TAG_MAXLENGTH)
-					|| (tag.length() < ConfigParties.ADDITIONAL_TAG_MINLENGTH)) {
+			tag = TagUtils.normalizeColorFormatting(tag);
+			String plainTag = TagUtils.stripFormatting(tag);
+
+			if (!CensorUtils.checkAllowedCharacters(ConfigParties.ADDITIONAL_TAG_ALLOWEDCHARS, plainTag, PartiesConstants.DEBUG_CMD_TAG_REGEXERROR_AC)
+					|| (plainTag.length() > ConfigParties.ADDITIONAL_TAG_MAXLENGTH)
+					|| (plainTag.length() < ConfigParties.ADDITIONAL_TAG_MINLENGTH)) {
 				sendMessage(sender, partyPlayer, Messages.ADDCMD_TAG_INVALID);
 				return;
 			}
-			if (CensorUtils.checkCensor(ConfigParties.ADDITIONAL_TAG_CENSORREGEX, tag, PartiesConstants.DEBUG_CMD_TAG_REGEXERROR_CEN)) {
+			if (CensorUtils.checkCensor(ConfigParties.ADDITIONAL_TAG_CENSORREGEX, plainTag, PartiesConstants.DEBUG_CMD_TAG_REGEXERROR_CEN)) {
 				sendMessage(sender, partyPlayer, Messages.ADDCMD_TAG_CENSORED);
 				return;
 			}
@@ -128,7 +132,7 @@ public class CommandTag extends PartiesSubCommand {
 		
 		if (tag != null
 				&& ConfigParties.ADDITIONAL_TAG_MUST_BE_UNIQUE
-				&& getPlugin().getPartyManager().existsTag(tag)) {
+				&& ((com.alessiodp.parties.common.parties.PartyManager) getPlugin().getPartyManager()).existsTagByVisibleText(tag)) {
 			sendMessage(sender, partyPlayer, Messages.ADDCMD_TAG_ALREADY_USED.replace("%tag%", tag));
 			return;
 		}

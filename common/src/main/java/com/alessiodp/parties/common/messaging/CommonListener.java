@@ -119,8 +119,8 @@ public class CommonListener {
 		if (party != null) {
 			if (load)
 				plugin.getPlayerManager().reloadPlayer(playerId);
-			PartyPlayerImpl leader = plugin.getPlayerManager().getPlayer(partyId);
-			
+			PartyPlayerImpl leader = plugin.getPlayerManager().getPlayer(playerId);
+
 			IPartyPostCreateEvent partiesPostCreateEvent = plugin.getEventManager().preparePartyPostCreateEvent(leader, party);
 			plugin.getEventManager().callEvent(partiesPostCreateEvent);
 			
