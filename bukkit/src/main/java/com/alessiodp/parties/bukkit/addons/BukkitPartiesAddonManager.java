@@ -10,6 +10,7 @@ import com.alessiodp.parties.bukkit.addons.external.MagicHandler;
 import com.alessiodp.parties.bukkit.addons.external.PlaceholderAPIHandler;
 import com.alessiodp.parties.bukkit.addons.external.SkriptHandler;
 import com.alessiodp.parties.bukkit.addons.external.VaultHandler;
+import com.alessiodp.parties.bukkit.addons.external.SuperiorSkyblockHandler;
 import com.alessiodp.parties.common.PartiesPlugin;
 import com.alessiodp.parties.common.addons.PartiesAddonManager;
 
@@ -23,6 +24,7 @@ public class BukkitPartiesAddonManager extends PartiesAddonManager {
 	private final MagicHandler magic;
 	private final PlaceholderAPIHandler placeholderAPI;
 	private final SkriptHandler skriptHandler;
+	private final SuperiorSkyblockHandler superiorSkyblock;
 	private final VaultHandler vault;
 	
 	public BukkitPartiesAddonManager(PartiesPlugin plugin) {
@@ -37,6 +39,7 @@ public class BukkitPartiesAddonManager extends PartiesAddonManager {
 		magic = new MagicHandler(plugin);
 		placeholderAPI = new PlaceholderAPIHandler(plugin);
 		skriptHandler = new SkriptHandler(plugin);
+		superiorSkyblock = new SuperiorSkyblockHandler(plugin);
 		vault = new VaultHandler(plugin);
 	}
 	
@@ -59,6 +62,7 @@ public class BukkitPartiesAddonManager extends PartiesAddonManager {
 		essentials.init();
 		essentialsChat.init();
 		magic.init();
+		superiorSkyblock.init();
 		vault.init();
 	}
 }

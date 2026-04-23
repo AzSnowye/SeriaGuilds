@@ -75,6 +75,10 @@
       <id>griefdefender-repo</id>
       <url>https://repo.glaremasters.me/repository/bloodshot</url>
     </repository>
+    <repository>
+      <id>bg-software-api</id>
+      <url>https://repo.bg-software.com/repository/api/</url>
+    </repository>
   </repositories>
   <dependencies>
     <dependency>
@@ -178,6 +182,12 @@
           <groupId>*</groupId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.bgsoftware</groupId>
+      <artifactId>SuperiorSkyblockAPI</artifactId>
+      <version>2026.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
